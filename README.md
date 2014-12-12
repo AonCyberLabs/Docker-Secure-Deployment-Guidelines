@@ -28,7 +28,7 @@ Note: Most of suggested command line options can be stored and used in a similar
     <td>Docker 1.3 now supports cryptographic signature to ascertain the origin and integrity of official repositories images. This feature is however still a work in progress as Docker will issue a warning but not prevent the image from actually running. Furthermore, it does not apply to non-official images.
     <br>
     <br>
-    In general, ensure that images are only retrieved from trusted repositories and that the --insecure-registry=[] command line option is never used.</td> 
+    In general, ensure that images are only retrieved from trusted repositories and that the <code>--insecure-registry=[]</code> command line option is never used.</td> 
   </tr>
   <tr>
     <td>Network Namespaces</td>
@@ -66,10 +66,10 @@ Note: Most of suggested command line options can be stored and used in a similar
   </tr>
   <tr>
     <td>SELinux or AppArmor</td>
-    <td>SELinux can be enabled in the container using setenforce 1, if it was previously installed and configured. The SELinux support for the Docker daemon is disabled by default and needs to be enabled using --selinux-enabled.
+    <td>SELinux can be enabled in the container using setenforce 1, if it was previously installed and configured. The SELinux support for the Docker daemon is disabled by default and needs to be enabled using <code>--selinux-enabled</code>.
     <br>
     <br>
-    Label confinement for the container can be configured using the newly added --security-opt to load SELinux or AppArmor policies. This feature was introduced in Docker version 1.3.
+    Label confinement for the container can be configured using the newly added <code>--security-opt</code> to load SELinux or AppArmor policies. This feature was introduced in Docker version 1.3.
     <br>
     <br>
     Example:<br>
@@ -129,7 +129,7 @@ Note: Most of suggested command line options can be stored and used in a similar
   </tr>
   <tr>
     <td>Devices control group (/dev/*)</td>
-    <td>If required, mMount devices using the built-in --device option (do not use -v with the --privileged argument). This feature was introduced in  version 1.2.
+    <td>If required, mMount devices using the built-in <code>--device</code> option (do not use -v with the <code>--privileged</code> argument). This feature was introduced in  version 1.2.
     <br>
     <br>
     Example (for using sound card):<br>
@@ -148,10 +148,10 @@ Note: Most of suggested command line options can be stored and used in a similar
     <br>
     <br>
     However, when using the LXC container library, sensitive mount points should ideally be manually mounted with read-only permissions, including:<br>
-    /sys 
-    /proc/sys
-    /proc/sysrq-trigger 
-    /proc/irq 
+    /sys<br> 
+    /proc/sys<br>
+    /proc/sysrq-trigger<br> 
+    /proc/irq<br>
     /proc/bus
     <br>
     <br>
@@ -186,10 +186,10 @@ Note: Most of suggested command line options can be stored and used in a similar
   <tr>
     <td><code>capabilities(7)</code></td>
     <td>Drop linux capabilities to a minimum whenever possible.
-    Docker default capabilities include: chown, dac_override, fowner, kill, setgid, setuid, setpcap, net_bind_service, net_raw, sys_chroot, mknod, setfcap, and audit_write.
+    Docker default capabilities include: <code>chown</code>, <code>dac_override</code>, <code>fowner</code>, <code>kill</code>, <code>setgid</code>, <code>setuid</code>, <code>setpcap</code>, <code>net_bind_service</code>, <code>net_raw</code>, <code>sys_chroot</code>, <code>mknod</code>, <code>setfcap</code>, and <code>audit_write</code>.
     <br>
     <br>
-    Can be controlled when launching a container from command line with --cap-add=[] or --cap-drop=[]. 
+    Can be controlled when launching a container from command line with <code>--cap-add=[]</code> or <code>--cap-drop=[]</code>. 
     <br>
     <br>
     Example:<br>
@@ -203,7 +203,7 @@ Note: Most of suggested command line options can be stored and used in a similar
     <td>Due to the shared nature of Docker containers’ kernel, separation of duty in the multi-tenancy environments cannot be achieved securely. It is recommended that containers be run on host that have no other purposes and are not used for sensitive operations. Consider moving all services into containers controlled by Docker.
     <br>
     <br> 
-    When possible, keep inter-container communications to a minimum by setting the Docker daemon to use --icc=false and specify -link with docker run when necessary, or --export=port to expose a port from the container without publishing it on the host.
+    When possible, keep inter-container communications to a minimum by setting the Docker daemon to use <code>--icc=false</code> and specify -link with docker run when necessary, or <code>--export=port</code> to expose a port from the container without publishing it on the host.
     <br>
     <br>
     Map groups of mutually-trusted containers to separate machines.</td>
