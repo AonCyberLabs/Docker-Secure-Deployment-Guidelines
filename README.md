@@ -187,3 +187,9 @@ Note: Most of suggested command line options can be stored and used in a similar
     <td>Perform regular security audit of your host system and containers to identify mis-configuration or vulnerabilities that could expose your system to compromise.</td>
   </tr>
 </table>
+
+<h2 align="center">License</h2>
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">MAM Security Checklist</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/GDSSecurity/MAM-Security-Checklist" property="cc:attributionName" rel="cc:attributionURL">Gotham Digital Science</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+
+</body>
+</html>
