@@ -15,7 +15,7 @@ The following itemised list suggests hardening actions that can be undertaken to
 
 Part of the content below is based on publications from Jérôme Petazzoni and Daniel J Walsh. This document aims at adding on to their recommendations and how they can specifically be implemented within Docker.
 
-Note: Most of suggested command line options can be stored and used in a similar manner inside a Dockerfile for automated image building.
+<em>Note</em>: Most of suggested command line options can be stored and used in a similar manner inside a Dockerfile for automated image building.
 <p>
 
 <table border="1" style="width:100%">
