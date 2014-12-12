@@ -11,7 +11,7 @@ Within today’s growing cloud-based IT market, there is a strong demand for vir
 
 Docker offers to reduces that overhead by allowing developers and system administrator to seamlessly deploy containers for applications and services required for the business operation. However, because Docker leverages the same kernel as the host system to reduce the need for resources, containers can be exposed to a great security risk if not adequately configured.
 
-The following itemised list suggests hardening actions that can be undertaken to improve the security posture of the containers within their respective environment. It should be noted that proposed solutions only apply to deployment of Linux Docker containers on Linux-based hosts, using Docker most recent release at the time of this writing (1.3.1, commit 4e9bbfa, dating 31/10/14).
+The following itemised list suggests hardening actions that can be undertaken to improve the security posture of the containers within their respective environment. It should be noted that proposed solutions only apply to deployment of Linux Docker containers on Linux-based hosts, using Docker most recent release at the time of this writing (1.3.1, commit <code>4e9bbfa</code>, dating 31/10/14).
 
 Part of the content below is based on publications from Jérôme Petazzoni and Daniel J Walsh. This document aims at adding on to their recommendations and how they can specifically be implemented within Docker.
 
@@ -45,7 +45,7 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
     <br>
     <br>
     For instance, the source IP range of a Docker container can be restricted from talking with the outside world using the following iptables filter.
-    <code>iptables -t filter -A FORWARD -s <source_ip_range> -j REJECT --reject-with icmp-admin-prohibited<code></td>
+    <code>iptables -t filter -A FORWARD -s &lt;source_ip_range&gt; -j REJECT --reject-with icmp-admin-prohibited<code></td>
   </tr>
   <tr>
     <td>Logging & Auditing</td>
@@ -72,7 +72,7 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
     Label confinement for the container can be configured using the newly added <code>--security-opt</code> to load SELinux or AppArmor policies. This feature was introduced in Docker version 1.3.
     <br>
     <br>
-    Example:<br>
+    <em>Example:</em><br>
     <code>docker run --security-opt=secdriver:name:value -i -t centos \ bash</code></td>
   </tr>
   <tr>
@@ -87,7 +87,7 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
     <br>
     <br>
     Minimize privileges enforced inside the container by leveraging the -u option.
-    Example:<br>
+    <em>Example:</em><br>
     <code>docker run -u <username> -it ubuntu /bin/bash</code> 
 
     Any user part of the docker group could eventually get root on the host from the container</td>
@@ -123,17 +123,17 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
     <code>find / -perm -2000</code>
     <br>
     <br>
-    Example:<br>
+    <em>Example:</em><br>
     <code>sudo chmod u-s filename</code>
     <code>sudo chmod -R g-s directory</code></td>
   </tr>
   <tr>
     <td>Devices control group (/dev/*)</td>
-    <td>If required, mMount devices using the built-in <code>--device</code> option (do not use -v with the <code>--privileged</code> argument). This feature was introduced in  version 1.2.
+    <td>If required, mount devices using the built-in <code>--device</code> option (do not use -v with the <code>--privileged</code> argument). This feature was introduced in  version 1.2.
     <br>
     <br>
-    Example (for using sound card):<br>
-    docker run --device=/dev/snd:/dev/snd ...</td>
+    <em>Example (for using sound card):</em><br>
+    <code>docker run --device=/dev/snd:/dev/snd ...</code></td>
   </tr>
   <tr>
     <td>Services and Application</td>
@@ -148,11 +148,11 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
     <br>
     <br>
     However, when using the LXC container library, sensitive mount points should ideally be manually mounted with read-only permissions, including:<br>
-    /sys<br> 
+    <code>/sys<br> 
     /proc/sys<br>
     /proc/sysrq-trigger<br> 
     /proc/irq<br>
-    /proc/bus
+    /proc/bus</code>
     <br>
     <br>
     Mount permissions should later be removed to prevent remounting.</td>
@@ -181,7 +181,7 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
     <br>
     <br>
     Instructions on how to generate a seccomp configuration on Docker GitHub repository within the ‘contrib’ folder. This can later be used to create a LXC based Docker container using the following command:<br>
-    <code>docker run --lxc-conf="lxc.seccomp=$file" <rest of arguments></code></td>
+    <code>docker run --lxc-conf="lxc.seccomp=$file" &lt;rest of arguments&gt;</code></td>
   </tr>
   <tr>
     <td><code>capabilities(7)</code></td>
@@ -192,7 +192,7 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
     Can be controlled when launching a container from command line with <code>--cap-add=[]</code> or <code>--cap-drop=[]</code>. 
     <br>
     <br>
-    Example:<br>
+    <em>Example:</em><br>
     <code>docker run --cap-drop setuid --cap-drop setgid -ti rhel7 /bin/sh</code>
     <br>
     <br>
