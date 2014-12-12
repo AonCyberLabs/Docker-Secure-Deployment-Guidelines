@@ -52,16 +52,16 @@ Note: Most of suggested command line options can be stored and used in a similar
     <td>Collect and archive security logs relating to Docker for auditing and monitoring purposes.
     <br>
     <br>
-    Accessing log files outside of the container, from the host, can be performed using the following command:
+    Accessing log files outside of the container, from the host, can be performed using the following command:<br>
     <code>docker run -v /dev/log:/dev/log rhel7 /bin/sh</code>
     <br>
     <br>
-    Using the Docker command built-in:
+    Using the Docker command built-in:<br>
     <code>docker logs ...</code>
     (-f to follow log output)
     <br>
     <br>
-    Log files can also be exported for persistent storage into a tarball using:
+    Log files can also be exported for persistent storage into a tarball using:<br>
     <code>docker export ...</code></td>
   </tr>
   <tr>
@@ -72,22 +72,22 @@ Note: Most of suggested command line options can be stored and used in a similar
     Label confinement for the container can be configured using the newly added --security-opt to load SELinux or AppArmor policies. This feature was introduced in Docker version 1.3.
     <br>
     <br>
-    Example:
+    Example:<br>
     <code>docker run --security-opt=secdriver:name:value -i -t centos \ bash</code></td>
   </tr>
   <tr>
     <td>Daemon Privileges</td>
-    <td>Do not use the --privileged command line option. This would otherwise allow the container to access all devices on the host and would in addition provide the container with specific a LSM (i.e SELinux or AppArmor) configuration that would give it the same level of access as processes running on the host.
+    <td>Do not use the <code>--privileged</code> command line option. This would otherwise allow the container to access all devices on the host and would in addition provide the container with specific a LSM (i.e SELinux or AppArmor) configuration that would give it the same level of access as processes running on the host.
     <br>
     <br>
-    Avoid the use --privileged helps reduce the attack surface and potential of host compromise. This however does not mean that the daemon will run without root privileges which is still currently required in the latest release. 
+    Avoid the use <code>--privileged</code> helps reduce the attack surface and potential of host compromise. This however does not mean that the daemon will run without root privileges which is still currently required in the latest release. 
     <br>
     <br>
     The ability to launch the daemon and containers should only be given to trusted user.
     <br>
     <br>
     Minimize privileges enforced inside the container by leveraging the -u option.
-    Example:
+    Example:<br>
     <code>docker run -u <username> -it ubuntu /bin/bash</code> 
 
     Any user part of the docker group could eventually get root on the host from the container</td>
@@ -132,7 +132,7 @@ Note: Most of suggested command line options can be stored and used in a similar
     <td>If required, mMount devices using the built-in --device option (do not use -v with the --privileged argument). This feature was introduced in  version 1.2.
     <br>
     <br>
-    Example (for using sound card):
+    Example (for using sound card):<br>
     docker run --device=/dev/snd:/dev/snd ...</td>
   </tr>
   <tr>
@@ -147,7 +147,7 @@ Note: Most of suggested command line options can be stored and used in a similar
     <td>This is handled automatically by Docker when using the native container library (i.e. libcontainer). 
     <br>
     <br>
-    However, when using the LXC container library, sensitive mount points should ideally be manually mounted with read-only permissions, including:
+    However, when using the LXC container library, sensitive mount points should ideally be manually mounted with read-only permissions, including:<br>
     /sys 
     /proc/sys
     /proc/sysrq-trigger 
@@ -176,11 +176,11 @@ Note: Most of suggested command line options can be stored and used in a similar
     <td>Work in progress (available in LXC driver, not in libcontainer which is now default).
     <br>
     <br>
-    To restart the Docker daemon to use the LXC driver use:
+    To restart the Docker daemon to use the LXC driver use:<br>
     <code>docker -d -e lxc</code>
     <br>
     <br>
-    Instructions on how to generate a seccomp configuration on Docker GitHub repository within the ‘contrib’ folder. This can later be used to create a LXC based Docker container using the following command:
+    Instructions on how to generate a seccomp configuration on Docker GitHub repository within the ‘contrib’ folder. This can later be used to create a LXC based Docker container using the following command:<br>
     <code>docker run --lxc-conf="lxc.seccomp=$file" <rest of arguments></code></td>
   </tr>
   <tr>
@@ -192,7 +192,7 @@ Note: Most of suggested command line options can be stored and used in a similar
     Can be controlled when launching a container from command line with --cap-add=[] or --cap-drop=[]. 
     <br>
     <br>
-    Example:
+    Example:<br>
     <code>docker run --cap-drop setuid --cap-drop setgid -ti rhel7 /bin/sh</code>
     <br>
     <br>
