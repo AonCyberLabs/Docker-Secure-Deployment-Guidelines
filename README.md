@@ -123,9 +123,9 @@ Note: Most of suggested command line options can be stored and used in a similar
     <code>find / -perm -2000</code>
     <br>
     <br>
-    Example:
-    sudo chmod u-s filename
-    sudo chmod -R g-s directory</td>
+    Example:<br>
+    <code>sudo chmod u-s filename</code>
+    <code>sudo chmod -R g-s directory</code></td>
   </tr>
   <tr>
     <td>Devices control group (/dev/*)</td>
