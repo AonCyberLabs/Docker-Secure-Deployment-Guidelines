@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<h3>Docker Secure Deployment Checklist</h3>
+<h3>Docker Secure Deployment Guidelines</h3>
 </head>
 
 <body>
