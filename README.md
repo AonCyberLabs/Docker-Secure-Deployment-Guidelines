@@ -62,7 +62,7 @@ Note: Most of suggested command line options can be stored and used in a similar
     <br>
     <br>
     Log files can also be exported for persistent storage into a tarball using:
-    docker export ...</td>
+    <code>docker export ...</code></td>
   </tr>
   <tr>
     <td>SELinux or AppArmor</td>
@@ -97,19 +97,19 @@ Note: Most of suggested command line options can be stored and used in a similar
     <td>In order to prevent Denial of Service attacks via system resources exhaustion, a number of resources restrictions can be applied using specific command line arguments.
     <br>
     <br>
-    CPU usage:
+    CPU usage:<br>
     <code>docker run -it --rm --cpuset=0,1 -c 2 ...</code>
     <br>
     <br>
-    Memory usage:
+    Memory usage:<br>
     <code>docker run -it --rm -m 128m ...</code>
     <br>
     <br>
-    Storage usage:
+    Storage usage:<br>
     <code>docker -d --storage-opt dm.basesize=5G</code>
     <br>
     <br>
-    Disk I/O:
+    Disk I/O:<br>
     Currently not supported by Docker. BlockIO* properties exposed via systemd can be leveraged to control disk usage quotas on supported operating systems.</td>
   </tr>
   <tr>
@@ -118,9 +118,9 @@ Note: Most of suggested command line options can be stored and used in a similar
     Mount filesystem with nosuid.
     <br>
     <br>
-    Find SUID/GUID binaries on the system.
-    find / -perm -4000
-    find / -perm -2000
+    Find SUID/GUID binaries on the system.<br>
+    <code>find / -perm -4000</code><br>
+    <code>find / -perm -2000</code>
     <br>
     <br>
     Example:
@@ -184,7 +184,7 @@ Note: Most of suggested command line options can be stored and used in a similar
     <code>docker run --lxc-conf="lxc.seccomp=$file" <rest of arguments></code></td>
   </tr>
   <tr>
-    <td>capabilities(7)</td>
+    <td><code>capabilities(7)</code></td>
     <td>Drop linux capabilities to a minimum whenever possible.
     Docker default capabilities include: chown, dac_override, fowner, kill, setgid, setuid, setpcap, net_bind_service, net_raw, sys_chroot, mknod, setfcap, and audit_write.
     <br>
