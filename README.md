@@ -148,11 +148,11 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
     <br>
     <br>
     However, when using the LXC container library, sensitive mount points should ideally be manually mounted with read-only permissions, including:<br>
-    <code>/sys<br> 
-    /proc/sys<br>
-    /proc/sysrq-trigger<br> 
-    /proc/irq<br>
-    /proc/bus</code>
+    <code>/sys</code><br> 
+    <code>/proc/sys</code><br>
+    <code>/proc/sysrq-trigger</code><br> 
+    <code>/proc/irq</code><br>
+    <code>/proc/bus</code>
     <br>
     <br>
     Mount permissions should later be removed to prevent remounting.</td>
