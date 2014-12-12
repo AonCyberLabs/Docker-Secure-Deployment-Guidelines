@@ -1,3 +1,12 @@
+<html>
+
+<head>
+<h3>Docker Secure Deployment Checklist</h3>
+</head>
+
+<body>
+
+<p>
 Within today’s growing cloud-based IT market, there is a strong demand for virtualisation technologies. Unfortunately most virtualization solutions are not but most of them are not flexible enough to meetwith developers requirements and the overhead implied by the use of full virtualisation solutions becomes a burden on the scalability of the infrastructure. 
 
 Docker offers to reduces that overhead by allowing developers and system administrator to seamlessly deploy containers for applications and services required for the business operation. However, because Docker leverages the same kernel as the host system to reduce the need for resources, containers can be exposed to a great security risk if not adequately configured.
@@ -7,6 +16,7 @@ The following itemised list suggests hardening actions that can be undertaken to
 Part of the content below is based on publications from Jérôme Petazzoni and Daniel J Walsh. This document aims at adding on to their recommendations and how they can specifically be implemented within Docker.
 
 Note: Most of suggested command line options can be stored and used in a similar manner inside a Dockerfile for automated image building.
+<p>
 
 <table border="1" style="width:100%">
   <tr>
