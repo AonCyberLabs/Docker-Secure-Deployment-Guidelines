@@ -7,7 +7,7 @@
 <body>
 
 <p>
-Within today’s growing cloud-based IT market, there is a strong demand for virtualisation technologies. Unfortunately most virtualization solutions are not flexible enough to meet developer requirements and the overhead implied by the use of full virtualisation solutions becomes a burden on the scalability of the infrastructure. 
+Within today’s growing cloud-based IT market, there is a strong demand for virtualization technologies. Unfortunately most virtualization solutions are not flexible enough to meet developer requirements and the overhead implied by the use of full virtualisation solutions becomes a burden on the scalability of the infrastructure. 
 
 Docker reduces that overhead by allowing developers and system administrator to seamlessly deploy containers for applications and services required for the business operation. However, because Docker leverages the same kernel as the host system to reduce the need for resources, containers can be exposed to a great security risk if not adequately configured.
 
@@ -66,7 +66,10 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
   </tr>
   <tr>
     <td>SELinux or AppArmor</td>
-    <td>SELinux can be enabled in the container using setenforce 1, if it was previously installed and configured. The SELinux support for the Docker daemon is disabled by default and needs to be enabled using <code>--selinux-enabled</code>.
+    <td>Linux kernel security modules such as Security-Enhanced Linux (SELinux) and AppArmor can be configured, via access control security policies, to implement mandatory access controls (MAC) confining processes to a limited set of system resources or privileges.
+    <br>
+    <br>  
+    SELinux can be enabled in the container using setenforce 1, if it was previously installed and configured. The SELinux support for the Docker daemon is disabled by default and needs to be enabled using <code>--selinux-enabled</code>.
     <br>
     <br>
     Label confinement for the container can be configured using the newly added <code>--security-opt</code> to load SELinux or AppArmor policies. This feature was introduced in Docker version 1.3.
@@ -94,7 +97,7 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
   </tr>
   <tr>
     <td>cgroups</td>
-    <td>In order to prevent Denial of Service attacks via system resources exhaustion, a number of resources restrictions can be applied using specific command line arguments.
+    <td>In order to prevent Denial of Service (does) attacks via system resources exhaustion, a number of resources restrictions can be applied using specific command line arguments.
     <br>
     <br>
     CPU usage:<br>
@@ -114,16 +117,18 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
   </tr>
   <tr>
     <td>SUID/GUID binaries</td>
-    <td>Remove SUID capabilities from the system.
-    Mount filesystem with nosuid.
+    <td>SUID and GUID binaries can prove dangerous when vulnerable to attacks leading to arbitrary code execution (e.g. buffer overflows), as they will be running under the context of the process’s file owner or group. 
     <br>
     <br>
-    Find SUID/GUID binaries on the system.<br>
-    <code>find / -perm -4000</code><br>
-    <code>find / -perm -2000</code>
+    When possible, consider removing SUID capabilities from the system and mount filesystem with the <code>nosuid</code> attribute.
+    <br>
+    <br>    
+    Find SUID/GUID binaries can be found on a Linux  on the system by running the following commands:<br>
+    <code>find / -perm -4000 -exec ls -l {} \; 2>/dev/null</code><br>
+    <code>find / -perm -2000 -exec ls -l {} \; 2>/dev/null</code>
     <br>
     <br>
-    <em>Example:</em><br>
+    The SUID and GUID file permissions can then be removed using commands similar to the following:<br>
     <code>sudo chmod u-s filename</code>
     <code>sudo chmod -R g-s directory</code></td>
   </tr>
@@ -137,10 +142,10 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
   </tr>
   <tr>
     <td>Services and Application</td>
-    <td>Isolate sensitive services (e.g. run SSH service on bastion host or in a VM).
+    <td>To reduce the potential for lateral movement if a Docker container was to be compromised, consider isolating sensitive services (e.g. run SSH service on bastion host or in a VM).
     <br>
     <br>
-    Do not run untrusted applications with root privileges.</td>
+    Furthermore, do not run untrusted applications with root privileges within containers.</td>
   </tr>
   <tr>
     <td>Mount Points</td>
@@ -159,7 +164,7 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
   </tr>
   <tr>
     <td>Linux Kernel</td>
-    <td>Ensure kernel is up-to-date using update utility provided by the system (e.g. apt-get, yum, etc)
+    <td>Ensure kernel is up-to-date using update utility provided by the system (e.g. apt-get, yum, etc). Out-dated kernels are more likely to be vulnerable to publicly disclosed vulnerabilities.
     <br>
     <br>
     Use strengthened a kernel with GRSEC or PAX, that for example provide increased security against memory corruption bugs.</td>
@@ -173,7 +178,10 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
   </tr>
   <tr>
     <td>libseccomp (and seccomp-bpf extension)</td>
-    <td>Work in progress (available in LXC driver, not in libcontainer which is now default).
+    <td>The libseccomp library allows to restrict the use of Linux kernel’s syscall procedures based on a white-list approach. Syscall procedures not vital to the system operation should ideally be disabled to prevent abuse or misuse within a compromised container.
+    <br>
+    <br>
+    This feature is currently a work in progress (available in LXC driver, not in libcontainer which is now default).
     <br>
     <br>
     To restart the Docker daemon to use the LXC driver use:<br>
