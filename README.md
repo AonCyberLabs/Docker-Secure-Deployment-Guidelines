@@ -7,9 +7,9 @@
 <body>
 
 <p>
-Within today’s growing cloud-based IT market, there is a strong demand for virtualisation technologies. Unfortunately most virtualization solutions are not but most of them are not flexible enough to meetwith developers requirements and the overhead implied by the use of full virtualisation solutions becomes a burden on the scalability of the infrastructure. 
+Within today’s growing cloud-based IT market, there is a strong demand for virtualisation technologies. Unfortunately most virtualization solutions are not flexible enough to meet developer requirements and the overhead implied by the use of full virtualisation solutions becomes a burden on the scalability of the infrastructure. 
 
-Docker offers to reduces that overhead by allowing developers and system administrator to seamlessly deploy containers for applications and services required for the business operation. However, because Docker leverages the same kernel as the host system to reduce the need for resources, containers can be exposed to a great security risk if not adequately configured.
+Docker reduces that overhead by allowing developers and system administrator to seamlessly deploy containers for applications and services required for the business operation. However, because Docker leverages the same kernel as the host system to reduce the need for resources, containers can be exposed to a great security risk if not adequately configured.
 
 The following itemised list suggests hardening actions that can be undertaken to improve the security posture of the containers within their respective environment. It should be noted that proposed solutions only apply to deployment of Linux Docker containers on Linux-based hosts, using Docker most recent release at the time of this writing (1.3.1, commit <code>4e9bbfa</code>, dating 31/10/14).
 
