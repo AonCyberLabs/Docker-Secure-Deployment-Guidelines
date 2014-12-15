@@ -24,14 +24,14 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
     <th>Deployment</th> 
   </tr>
   <tr>
-    <td>Docker Images</td>
+    <td valign="top">Docker Images</td>
     <td>Docker 1.3 now supports cryptographic signature to ascertain the origin and integrity of official repositories images. This feature is however still a work in progress as Docker will issue a warning but not prevent the image from actually running. Furthermore, it does not apply to non-official images.
     <br>
     <br>
     In general, ensure that images are only retrieved from trusted repositories and that the <code>--insecure-registry=[]</code> command line option is never used.</td> 
   </tr>
   <tr>
-    <td>Network Namespaces</td>
+    <td valign="top">Network Namespaces</td>
     <td>By default, the Docker REST API used to control containers exposed via the system Docker daemon is only accessible locally via a Unix domain socket.
     <br>
     <br>
@@ -48,7 +48,7 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
     <code>iptables -t filter -A FORWARD -s &lt;source_ip_range&gt; -j REJECT --reject-with icmp-admin-prohibited<code></td>
   </tr>
   <tr>
-    <td>Logging & Auditing</td>
+    <td valign="top">Logging & Auditing</td>
     <td>Collect and archive security logs relating to Docker for auditing and monitoring purposes.
     <br>
     <br>
@@ -65,7 +65,7 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
     <code>docker export ...</code></td>
   </tr>
   <tr>
-    <td>SELinux or AppArmor</td>
+    <td valign="top">SELinux or AppArmor</td>
     <td>Linux kernel security modules such as Security-Enhanced Linux (SELinux) and AppArmor can be configured, via access control security policies, to implement mandatory access controls (MAC) confining processes to a limited set of system resources or privileges.
     <br>
     <br>  
@@ -79,7 +79,7 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
     <code>docker run --security-opt=secdriver:name:value -i -t centos \ bash</code></td>
   </tr>
   <tr>
-    <td>Daemon Privileges</td>
+    <td valign="top">Daemon Privileges</td>
     <td>Do not use the <code>--privileged</code> command line option. This would otherwise allow the container to access all devices on the host and would in addition provide the container with specific a LSM (i.e SELinux or AppArmor) configuration that would give it the same level of access as processes running on the host.
     <br>
     <br>
@@ -96,7 +96,7 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
     Any user part of the docker group could eventually get root on the host from the container</td>
   </tr>
   <tr>
-    <td>cgroups</td>
+    <td valign="top">cgroups</td>
     <td>In order to prevent Denial of Service (does) attacks via system resources exhaustion, a number of resources restrictions can be applied using specific command line arguments.
     <br>
     <br>
@@ -116,7 +116,7 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
     Currently not supported by Docker. BlockIO* properties exposed via systemd can be leveraged to control disk usage quotas on supported operating systems.</td>
   </tr>
   <tr>
-    <td>SUID/GUID binaries</td>
+    <td valign="top">SUID/GUID binaries</td>
     <td>SUID and GUID binaries can prove dangerous when vulnerable to attacks leading to arbitrary code execution (e.g. buffer overflows), as they will be running under the context of the process’s file owner or group. 
     <br>
     <br>
@@ -133,7 +133,7 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
     <code>sudo chmod -R g-s directory</code></td>
   </tr>
   <tr>
-    <td>Devices control group (/dev/*)</td>
+    <td valign="top">Devices control group (/dev/*)</td>
     <td>If required, mount devices using the built-in <code>--device</code> option (do not use -v with the <code>--privileged</code> argument). This feature was introduced in  version 1.2.
     <br>
     <br>
@@ -148,7 +148,7 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
     Furthermore, do not run untrusted applications with root privileges within containers.</td>
   </tr>
   <tr>
-    <td>Mount Points</td>
+    <td valign="top">Mount Points</td>
     <td>This is handled automatically by Docker when using the native container library (i.e. libcontainer). 
     <br>
     <br>
@@ -163,7 +163,7 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
     Mount permissions should later be removed to prevent remounting.</td>
   </tr>
   <tr>
-    <td>Linux Kernel</td>
+    <td valign="top">Linux Kernel</td>
     <td>Ensure kernel is up-to-date using update utility provided by the system (e.g. apt-get, yum, etc). Out-dated kernels are more likely to be vulnerable to publicly disclosed vulnerabilities.
     <br>
     <br>
@@ -177,7 +177,7 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
     This feature would allow the Docker daemon to run as an unprivileged user on the host but appear as running as root within containers.</td>
   </tr>
   <tr>
-    <td>libseccomp (and seccomp-bpf extension)</td>
+    <td valign="top">libseccomp (and seccomp-bpf extension)</td>
     <td>The libseccomp library allows to restrict the use of Linux kernel’s syscall procedures based on a white-list approach. Syscall procedures not vital to the system operation should ideally be disabled to prevent abuse or misuse within a compromised container.
     <br>
     <br>
@@ -192,7 +192,7 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
     <code>docker run --lxc-conf="lxc.seccomp=$file" &lt;rest of arguments&gt;</code></td>
   </tr>
   <tr>
-    <td><code>capabilities(7)</code></td>
+    <td valign="top"><code>capabilities(7)</code></td>
     <td>Drop linux capabilities to a minimum whenever possible.
     Docker default capabilities include: <code>chown</code>, <code>dac_override</code>, <code>fowner</code>, <code>kill</code>, <code>setgid</code>, <code>setuid</code>, <code>setpcap</code>, <code>net_bind_service</code>, <code>net_raw</code>, <code>sys_chroot</code>, <code>mknod</code>, <code>setfcap</code>, and <code>audit_write</code>.
     <br>
@@ -207,7 +207,7 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
     This feature was introduced in Docker version 1.2</td>
   </tr>
   <tr>
-    <td>Multi-tenancy Environments</td>
+    <td valign="top">Multi-tenancy Environments</td>
     <td>Due to the shared nature of Docker containers’ kernel, separation of duty in the multi-tenancy environments cannot be achieved securely. It is recommended that containers be run on host that have no other purposes and are not used for sensitive operations. Consider moving all services into containers controlled by Docker.
     <br>
     <br> 
@@ -217,14 +217,14 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
     Map groups of mutually-trusted containers to separate machines.</td>
   </tr>
   <tr>
-    <td>Full Virtualisation</td>
+    <td valign="top">Full Virtualisation</td>
     <td>Use a full virtualisation solution to contain Docker, such as KVM. This will prevent escalation from the container to the host if a kernel vulnerability is exploited inside the Docker image.
     <br>
     <br>
     Docker images can be nested to provide this KVM virtualisation layer as shown in the Docker-in-Docker utility</td>
   </tr>
   <tr>
-    <td>Security Audits</td>
+    <td valign="top">Security Audits</td>
     <td>Perform regular security audit of your host system and containers to identify mis-configuration or vulnerabilities that could expose your system to compromise.</td>
   </tr>
 </table>
