@@ -230,7 +230,34 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
 </table>
 
 <h2>References</h2>
-
+<br><br>
+[1] http://www.slideshare.net/jpetazzo/docker-linux-containers-lxc-and-security
+[2] https://www.youtube.com/watch?v=zWGFqMuEHdw
+[3] http://blog.docker.com/2014/10/docker-1-3-signed-images-process-injection-security-options-mac-shared-directories/
+[4] http://containerops.org/2013/11/19/lxc-networking/
+    http://blog.dotcloud.com/under-the-hood-linux-kernels-on-dotcloud-part
+    https://speakerdeck.com/gyre007/exploring-networking-in-linux-containers
+[5] http://opensource.com/business/14/10/docker-user-rights-fedora 
+[6] https://docs.docker.com/articles/https/
+[7] https://groups.google.com/forum/#!msg/docker-user/uuiQ3Nk3uSY/SuFpdO6BPmYJ
+[8] https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Resource_Management_and_Linux_Containers_Guide/sec-Monitoring_Images.html
+[9] http://blog.docker.com/2014/10/docker-1-3-signed-images-process-injection-security-options-mac-shared-directories/
+[10] https://goldmann.pl/blog/2014/09/11/resource-management-in-docker/
+    http://blog.docker.com/2013/10/gathering-lxc-docker-containers-metrics/
+[11] https://goldmann.pl/blog/2014/09/11/resource-management-in-docker/#_limiting_read_write_speed
+[12] More examples at http://www.thern.org/projects/linux-lecture/intro-to-linux/node10.html
+[13] http://blog.docker.com/2014/08/announcing-docker-1-2-0/
+[14] https://github.com/docker/docker/issues/2918
+    https://github.com/docker/docker/pull/4572
+    https://github.com/docker/docker/issues/7906
+    https://code.google.com/p/go/issues/detail?id=8447
+[15] http://blog.docker.com/2014/03/docker-0-9-introducing-execution-drivers-and-libcontainer/
+[16] Automated Perl script to generate the list of accepted syscalls.
+    https://github.com/docker/docker/blob/487a417d9fd074d0e78876072c7d1ebfd398ea7a/contrib/mkseccomp.pl
+    https://github.com/docker/docker/blob/487a417d9fd074d0e78876072c7d1ebfd398ea7a/contrib/mkseccomp.sample
+[17] http://blog.docker.com/2014/08/announcing-docker-1-2-0/
+[18] http://blog.docker.com/2014/06/docker-container-breakout-proof-of-concept-exploit/
+[19] https://github.com/jpetazzo/docker2docker
 
 <h2>License</h2>
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Docker Secure Deployment Checklist</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/GDSSecurity/MAM-Security-Checklist" property="cc:attributionName" rel="cc:attributionURL">Gotham Digital Science</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
