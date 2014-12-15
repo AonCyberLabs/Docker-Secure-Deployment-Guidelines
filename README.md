@@ -141,7 +141,7 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
     <code>docker run --device=/dev/snd:/dev/snd ...</code></td>
   </tr>
   <tr>
-    <td>Services and Application</td>
+    <td valign="top">Services and Application</td>
     <td>To reduce the potential for lateral movement if a Docker container was to be compromised, consider isolating sensitive services (e.g. run SSH service on bastion host or in a VM).
     <br>
     <br>
@@ -170,7 +170,7 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
     Use strengthened a kernel with GRSEC or PAX, that for example provide increased security against memory corruption bugs.</td>
   </tr>
   <tr>
-    <td>User Namespaces</td>
+    <td valign="top">User Namespaces</td>
     <td>Docker does not support user namespaces but is a feature currently under development. UID mapping is currently supported by the LXC driver but not in the native libcontainer library.
     <br>
     <br>    
