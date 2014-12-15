@@ -18,7 +18,7 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
 <em>Note</em>: Most of suggested command line options can be stored and used in a similar manner inside a Dockerfile for automated image building.
 </p>
 
-<table border="1" style="width:100%">
+<table tyle="width:100%">
   <tr>
     <th>Item</th>
     <th>Deployment</th> 
