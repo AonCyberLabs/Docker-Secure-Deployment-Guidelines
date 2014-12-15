@@ -230,7 +230,7 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
 </table>
 
 <h2>References</h2>
-<br>[1] http://www.slideshare.net/jpetazzo/docker-linux-containers-lxc-and-security
+[1] http://www.slideshare.net/jpetazzo/docker-linux-containers-lxc-and-security
 <br>[2] https://www.youtube.com/watch?v=zWGFqMuEHdw
 <br>[3] http://blog.docker.com/2014/10/docker-1-3-signed-images-process-injection-security-options-mac-shared-directories/
 <br>[4] http://containerops.org/2013/11/19/lxc-networking/
