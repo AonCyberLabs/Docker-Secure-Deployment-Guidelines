@@ -11,7 +11,7 @@ Within today’s growing cloud-based IT market, there is a strong demand for vir
 <br><br>
 Docker reduces that overhead by allowing developers and system administrator to seamlessly deploy containers for applications and services required for the business operation. However, because Docker leverages the same kernel as the host system to reduce the need for resources, containers can be exposed to a great security risk if not adequately configured.
 <br><br>
-The following itemised list suggests hardening actions that can be undertaken to improve the security posture of the containers within their respective environment. It should be noted that proposed solutions only apply to deployment of Linux Docker containers on Linux-based hosts, using Docker most recent release at the time of this writing (1.3.1, commit <code>4e9bbfa</code>, dating 31/10/14).
+The following itemised list suggests hardening actions that can be undertaken to improve the security posture of the containers within their respective environment. It should be noted that proposed solutions only apply to deployment of Linux Docker containers on Linux-based hosts, using Docker most recent release at the time of this writing (1.4.0, commit <code>4595d4f</code>, dating 11/12/14).
 <br><br>
 Part of the content below is based on publications from Jérôme Petazzoni and Daniel J Walsh. This document aims at adding on to their recommendations and how they can specifically be implemented within Docker.
 <br><br>
@@ -41,7 +41,7 @@ Part of the content below is based on publications from Jérôme Petazzoni and D
     When allowing access to the daemon over TCP, ensure that communications are adequately encrypted using SSL and access controls effectively prevent unauthorised parties from interacting with it.
     <br>
     <br>
-    Kernel firewall iptables rules can be applied to docker0, the standard network bridge interface for Docker, to enforce those controls.
+    Kernel firewall iptables rules can be applied to <code>docker0</code>, the standard network bridge interface for Docker, to enforce those controls.
     <br>
     <br>
     For instance, the source IP range of a Docker container can be restricted from talking with the outside world using the following iptables filter.
