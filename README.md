@@ -244,15 +244,14 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
 <br>[10] https://goldmann.pl/blog/2014/09/11/resource-management-in-docker/
 <br>    http://blog.docker.com/2013/10/gathering-lxc-docker-containers-metrics/
 <br>[11] https://goldmann.pl/blog/2014/09/11/resource-management-in-docker/#_limiting_read_write_speed
-<br>[12] More examples at http://www.thern.org/projects/linux-lecture/intro-to-linux/node10.html
+<br>[12] http://www.thern.org/projects/linux-lecture/intro-to-linux/node10.html
 <br>[13] http://blog.docker.com/2014/08/announcing-docker-1-2-0/
 <br>[14] https://github.com/docker/docker/issues/2918
 <br>    https://github.com/docker/docker/pull/4572
 <br>    https://github.com/docker/docker/issues/7906
 <br>    https://code.google.com/p/go/issues/detail?id=8447
 <br>[15] http://blog.docker.com/2014/03/docker-0-9-introducing-execution-drivers-and-libcontainer/
-<br>[16] Automated Perl script to generate the list of accepted syscalls.
-<br>    https://github.com/docker/docker/blob/487a417d9fd074d0e78876072c7d1ebfd398ea7a/contrib/mkseccomp.pl
+<br>[16] https://github.com/docker/docker/blob/487a417d9fd074d0e78876072c7d1ebfd398ea7a/contrib/mkseccomp.pl
 <br>    https://github.com/docker/docker/blob/487a417d9fd074d0e78876072c7d1ebfd398ea7a/contrib/mkseccomp.sample
 <br>[17] http://blog.docker.com/2014/08/announcing-docker-1-2-0/
 <br>[18] http://blog.docker.com/2014/06/docker-container-breakout-proof-of-concept-exploit/
