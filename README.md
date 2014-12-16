@@ -89,10 +89,10 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     The ability to launch the daemon and containers should only be given to trusted user.
     <br>
     <br>
-    Minimize privileges enforced inside the container by leveraging the -u option.
+    Minimize privileges enforced inside the container by leveraging the -u option.<br>
     <em>Example:</em><br>
     <code>docker run -u <username> -it ubuntu /bin/bash</code> 
-
+    <br><br>
     Any user part of the docker group could eventually get root on the host from the container</p></td>
   </tr>
   <tr>
