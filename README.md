@@ -45,7 +45,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     <br>
     <br>
     For instance, the source IP range of a Docker container can be restricted from talking with the outside world using the following iptables filter<sup> [7]</sup>.
-    <code>iptables -t filter -A FORWARD -s &lt;source_ip_range&gt; -j REJECT --reject-with icmp-admin-prohibited<code></td>
+    <code>iptables -t filter -A FORWARD -s &lt;source_ip_range&gt; -j REJECT --reject-with icmp-admin-prohibited<code></p></td>
   </tr>
   <tr>
     <td valign="top">Logging & Auditing</td>
@@ -62,7 +62,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     <br>
     <br>
     Log files can also be exported for persistent storage into a tarball using:<br>
-    <code>docker export ...</code></td>
+    <code>docker export ...</code></p></td>
   </tr>
   <tr>
     <td valign="top">SELinux or AppArmor</td>
@@ -76,7 +76,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     <br>
     <br>
     <em>Example:</em><br>
-    <code>docker run --security-opt=secdriver:name:value -i -t centos \ bash</code></td>
+    <code>docker run --security-opt=secdriver:name:value -i -t centos \ bash</code></p></td>
   </tr>
   <tr>
     <td valign="top">Daemon Privileges</td>
@@ -93,7 +93,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     <em>Example:</em><br>
     <code>docker run -u <username> -it ubuntu /bin/bash</code> 
 
-    Any user part of the docker group could eventually get root on the host from the container</td>
+    Any user part of the docker group could eventually get root on the host from the container</p></td>
   </tr>
   <tr>
     <td valign="top">cgroups<sup> [10]</sup></td>
@@ -113,7 +113,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     <br>
     <br>
     Disk I/O:<br>
-    Currently not supported by Docker. BlockIO* properties exposed via systemd can be leveraged to control disk usage quotas on supported operating systems<sup> [11]</sup>.</td>
+    Currently not supported by Docker. BlockIO* properties exposed via systemd can be leveraged to control disk usage quotas on supported operating systems<sup> [11]</sup>.</p></td>
   </tr>
   <tr>
     <td valign="top">SUID/GUID binaries</td>
@@ -130,7 +130,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     <br>
     The SUID and GUID file permissions can then be removed using commands similar to the following<sup> [12]</sup>:<br>
     <code>sudo chmod u-s filename</code>
-    <code>sudo chmod -R g-s directory</code></td>
+    <code>sudo chmod -R g-s directory</code></p></td>
   </tr>
   <tr>
     <td valign="top">Devices control group (/dev/*)</td>
@@ -138,14 +138,14 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     <br>
     <br>
     <em>Example (for using sound card):</em><br>
-    <code>docker run --device=/dev/snd:/dev/snd ...</code></td>
+    <code>docker run --device=/dev/snd:/dev/snd ...</code></p></td>
   </tr>
   <tr>
     <td valign="top">Services and Application</td>
     <td><p align="justify">To reduce the potential for lateral movement if a Docker container was to be compromised, consider isolating sensitive services (e.g. run SSH service on bastion host or in a VM).
     <br>
     <br>
-    Furthermore, do not run untrusted applications with root privileges within containers.</td>
+    Furthermore, do not run untrusted applications with root privileges within containers.</p></td>
   </tr>
   <tr>
     <td valign="top">Mount Points</td>
@@ -160,21 +160,21 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     <code>/proc/bus</code>
     <br>
     <br>
-    Mount permissions should later be removed to prevent remounting.</td>
+    Mount permissions should later be removed to prevent remounting.</p></td>
   </tr>
   <tr>
     <td valign="top">Linux Kernel</td>
     <td><p align="justify">Ensure kernel is up-to-date using update utility provided by the system (e.g. apt-get, yum, etc). Out-dated kernels are more likely to be vulnerable to publicly disclosed vulnerabilities.
     <br>
     <br>
-    Use strengthened a kernel with GRSEC or PAX, that for example provide increased security against memory corruption bugs.</td>
+    Use strengthened a kernel with GRSEC or PAX, that for example provide increased security against memory corruption bugs.</p></td>
   </tr>
   <tr>
     <td valign="top">User Namespaces</td>
     <td><p align="justify">Docker does not support user namespaces but is a feature currently under development<sup> [14]</sup>. UID mapping is currently supported by the LXC driver but not in the native libcontainer library.
     <br>
     <br>    
-    This feature would allow the Docker daemon to run as an unprivileged user on the host but appear as running as root within containers.</td>
+    This feature would allow the Docker daemon to run as an unprivileged user on the host but appear as running as root within containers.</p></td>
   </tr>
   <tr>
     <td valign="top">libseccomp (and seccomp-bpf extension)</td>
@@ -189,7 +189,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     <br>
     <br>
     Instructions on how to generate a seccomp configuration on Docker GitHub repository within the 'contrib'<sup> [16]</sup> folder. This can later be used to create a LXC based Docker container using the following command:<br>
-    <code>docker run --lxc-conf="lxc.seccomp=$file" &lt;rest of arguments&gt;</code></td>
+    <code>docker run --lxc-conf="lxc.seccomp=$file" &lt;rest of arguments&gt;</code></p></td>
   </tr>
   <tr>
     <td valign="top"><code>capabilities(7)</code></td>
@@ -204,7 +204,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     <code>docker run --cap-drop setuid --cap-drop setgid -ti rhel7 /bin/sh</code>
     <br>
     <br>
-    This feature was introduced in Docker version 1.2<sup> [17]</sup></td>
+    This feature was introduced in Docker version 1.2<sup> [17]</sup></p></td>
   </tr>
   <tr>
     <td valign="top">Multi-tenancy Environments</td>
@@ -214,18 +214,18 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     When possible, keep inter-container communications to a minimum by setting the Docker daemon to use <code>--icc=false</code> and specify -link with docker run when necessary, or <code>--export=port</code> to expose a port from the container without publishing it on the host.
     <br>
     <br>
-    Map groups of mutually-trusted containers to separate machines<sup> [18]</sup>.</td>
+    Map groups of mutually-trusted containers to separate machines<sup> [18]</sup>.</p></td>
   </tr>
   <tr>
     <td valign="top">Full Virtualisation</td>
     <td><p align="justify">Use a full virtualisation solution to contain Docker, such as KVM. This will prevent escalation from the container to the host if a kernel vulnerability is exploited inside the Docker image.
     <br>
     <br>
-    Docker images can be nested to provide this KVM virtualisation layer as shown in the Docker-in-Docker utility<sup> [19]</sup>.</td>
+    Docker images can be nested to provide this KVM virtualisation layer as shown in the Docker-in-Docker utility<sup> [19]</sup>.</p></td>
   </tr>
   <tr>
     <td valign="top">Security Audits</td>
-    <td><p align="justify">Perform regular security audit of your host system and containers to identify mis-configuration or vulnerabilities that could expose your system to compromise.</td>
+    <td><p align="justify">Perform regular security audit of your host system and containers to identify mis-configuration or vulnerabilities that could expose your system to compromise.</p></td>
   </tr>
 </table>
 
