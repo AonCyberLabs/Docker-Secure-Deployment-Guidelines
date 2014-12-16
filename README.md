@@ -13,7 +13,7 @@ Docker reduces that overhead by allowing developers and system administrator to 
 <br><br>
 The following itemised list suggests hardening actions that can be undertaken to improve the security posture of the containers within their respective environment. It should be noted that proposed solutions only apply to deployment of Linux Docker containers on Linux-based hosts, using Docker most recent release at the time of this writing (1.4.0, commit <code>4595d4f</code>, dating 11/12/14).
 <br><br>
-Part of the content below is based on publications from Jérôme Petazzoni<sup>[1]</sup> and Daniel J Walsh<sup>[2]</sup>. This document aims at adding on to their recommendations and how they can specifically be implemented within Docker.
+Part of the content below is based on publications from Jérôme Petazzoni<sup> [1]</sup> and Daniel J Walsh<sup> [2]</sup>. This document aims at adding on to their recommendations and how they can specifically be implemented within Docker.
 <br><br>
 <em>Note</em>: Most of suggested command line options can be stored and used in a similar manner inside a Dockerfile for automated image building.
 </p>
@@ -25,26 +25,26 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup>[
   </tr>
   <tr>
     <td valign="top">Docker Images</td>
-    <td>Docker 1.3 now supports cryptographic signature<sup>[3]</sup> to ascertain the origin and integrity of official repositories images. This feature is however still a work in progress as Docker will issue a warning but not prevent the image from actually running. Furthermore, it does not apply to non-official images.
+    <td>Docker 1.3 now supports cryptographic signature<sup> [3]</sup> to ascertain the origin and integrity of official repositories images. This feature is however still a work in progress as Docker will issue a warning but not prevent the image from actually running. Furthermore, it does not apply to non-official images.
     <br>
     <br>
     In general, ensure that images are only retrieved from trusted repositories and that the <code>--insecure-registry=[]</code> command line option is never used.</td> 
   </tr>
   <tr>
-    <td valign="top">Network Namespaces<sup>[4]</sup></td>
+    <td valign="top">Network Namespaces<sup> [4]</sup></td>
     <td>By default, the Docker REST API used to control containers exposed via the system Docker daemon is only accessible locally via a Unix domain socket.
     <br>
     <br>
-    Running Docker on a TCP port (i.e. forcing the bind address using the -H option when launching the Docker daemon) will allow anyone with access to that port to gain access to the container, potentially gaining root access on the host as well in some scenarios where the local user belongs to the docker group<sup>[5]</sup>. 
+    Running Docker on a TCP port (i.e. forcing the bind address using the -H option when launching the Docker daemon) will allow anyone with access to that port to gain access to the container, potentially gaining root access on the host as well in some scenarios where the local user belongs to the docker group<sup> [5]</sup>. 
     <br>
     <br>
-    When allowing access to the daemon over TCP, ensure that communications are adequately encrypted using SSL<sup>[6]</sup> and access controls effectively prevent unauthorised parties from interacting with it.
+    When allowing access to the daemon over TCP, ensure that communications are adequately encrypted using SSL<sup> [6]</sup> and access controls effectively prevent unauthorised parties from interacting with it.
     <br>
     <br>
     Kernel firewall iptables rules can be applied to <code>docker0</code>, the standard network bridge interface for Docker, to enforce those controls.
     <br>
     <br>
-    For instance, the source IP range of a Docker container can be restricted from talking with the outside world using the following iptables filter<sup>[7]</sup>.
+    For instance, the source IP range of a Docker container can be restricted from talking with the outside world using the following iptables filter<sup> [7]</sup>.
     <code>iptables -t filter -A FORWARD -s &lt;source_ip_range&gt; -j REJECT --reject-with icmp-admin-prohibited<code></td>
   </tr>
   <tr>
@@ -52,7 +52,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup>[
     <td>Collect and archive security logs relating to Docker for auditing and monitoring purposes.
     <br>
     <br>
-    Accessing log files outside of the container, from the host<sup>[8]</sup>, can be performed using the following command:<br>
+    Accessing log files outside of the container, from the host<sup> [8]</sup>, can be performed using the following command:<br>
     <code>docker run -v /dev/log:/dev/log rhel7 /bin/sh</code>
     <br>
     <br>
@@ -72,7 +72,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup>[
     SELinux can be enabled in the container using setenforce 1, if it was previously installed and configured. The SELinux support for the Docker daemon is disabled by default and needs to be enabled using <code>--selinux-enabled</code>.
     <br>
     <br>
-    Label confinement for the container can be configured using the newly added <code>--security-opt</code> to load SELinux or AppArmor policies. This feature was introduced in Docker version 1.3<sup>[9]</sup>.
+    Label confinement for the container can be configured using the newly added <code>--security-opt</code> to load SELinux or AppArmor policies. This feature was introduced in Docker version 1.3<sup> [9]</sup>.
     <br>
     <br>
     <em>Example:</em><br>
@@ -96,7 +96,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup>[
     Any user part of the docker group could eventually get root on the host from the container</td>
   </tr>
   <tr>
-    <td valign="top">cgroups<sup>[10]</sup></td>
+    <td valign="top">cgroups<sup> [10]</sup></td>
     <td>In order to prevent Denial of Service (does) attacks via system resources exhaustion, a number of resources restrictions can be applied using specific command line arguments.
     <br>
     <br>
@@ -113,7 +113,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup>[
     <br>
     <br>
     Disk I/O:<br>
-    Currently not supported by Docker. BlockIO* properties exposed via systemd can be leveraged to control disk usage quotas on supported operating systems<sup>[11]</sup>.</td>
+    Currently not supported by Docker. BlockIO* properties exposed via systemd can be leveraged to control disk usage quotas on supported operating systems<sup> [11]</sup>.</td>
   </tr>
   <tr>
     <td valign="top">SUID/GUID binaries</td>
@@ -128,13 +128,13 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup>[
     <code>find / -perm -2000 -exec ls -l {} \; 2>/dev/null</code>
     <br>
     <br>
-    The SUID and GUID file permissions can then be removed using commands similar to the following<sup>[12]</sup>:<br>
+    The SUID and GUID file permissions can then be removed using commands similar to the following<sup> [12]</sup>:<br>
     <code>sudo chmod u-s filename</code>
     <code>sudo chmod -R g-s directory</code></td>
   </tr>
   <tr>
     <td valign="top">Devices control group (/dev/*)</td>
-    <td>If required, mount devices using the built-in <code>--device</code> option (do not use -v with the <code>--privileged</code> argument). This feature was introduced in  version 1.2<sup>[13]</sup>.
+    <td>If required, mount devices using the built-in <code>--device</code> option (do not use -v with the <code>--privileged</code> argument). This feature was introduced in  version 1.2<sup> [13]</sup>.
     <br>
     <br>
     <em>Example (for using sound card):</em><br>
@@ -171,7 +171,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup>[
   </tr>
   <tr>
     <td valign="top">User Namespaces</td>
-    <td>Docker does not support user namespaces but is a feature currently under development<sup>[14]</sup>. UID mapping is currently supported by the LXC driver but not in the native libcontainer library.
+    <td>Docker does not support user namespaces but is a feature currently under development<sup> [14]</sup>. UID mapping is currently supported by the LXC driver but not in the native libcontainer library.
     <br>
     <br>    
     This feature would allow the Docker daemon to run as an unprivileged user on the host but appear as running as root within containers.</td>
@@ -184,11 +184,11 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup>[
     This feature is currently a work in progress (available in LXC driver, not in libcontainer which is now default).
     <br>
     <br>
-    To restart the Docker daemon to use the LXC driver use<sup>[15]</sup>:<br>
+    To restart the Docker daemon to use the LXC driver use<sup> [15]</sup>:<br>
     <code>docker -d -e lxc</code>
     <br>
     <br>
-    Instructions on how to generate a seccomp configuration on Docker GitHub repository within the 'contrib'<sup>[16]</sup> folder. This can later be used to create a LXC based Docker container using the following command:<br>
+    Instructions on how to generate a seccomp configuration on Docker GitHub repository within the 'contrib'<sup> [16]</sup> folder. This can later be used to create a LXC based Docker container using the following command:<br>
     <code>docker run --lxc-conf="lxc.seccomp=$file" &lt;rest of arguments&gt;</code></td>
   </tr>
   <tr>
@@ -204,7 +204,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup>[
     <code>docker run --cap-drop setuid --cap-drop setgid -ti rhel7 /bin/sh</code>
     <br>
     <br>
-    This feature was introduced in Docker version 1.2<sup>[17]</sup></td>
+    This feature was introduced in Docker version 1.2<sup> [17]</sup></td>
   </tr>
   <tr>
     <td valign="top">Multi-tenancy Environments</td>
@@ -214,14 +214,14 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup>[
     When possible, keep inter-container communications to a minimum by setting the Docker daemon to use <code>--icc=false</code> and specify -link with docker run when necessary, or <code>--export=port</code> to expose a port from the container without publishing it on the host.
     <br>
     <br>
-    Map groups of mutually-trusted containers to separate machines<sup>[18]</sup>.</td>
+    Map groups of mutually-trusted containers to separate machines<sup> [18]</sup>.</td>
   </tr>
   <tr>
     <td valign="top">Full Virtualisation</td>
     <td>Use a full virtualisation solution to contain Docker, such as KVM. This will prevent escalation from the container to the host if a kernel vulnerability is exploited inside the Docker image.
     <br>
     <br>
-    Docker images can be nested to provide this KVM virtualisation layer as shown in the Docker-in-Docker utility<sup>[19]</sup>.</td>
+    Docker images can be nested to provide this KVM virtualisation layer as shown in the Docker-in-Docker utility<sup> [19]</sup>.</td>
   </tr>
   <tr>
     <td valign="top">Security Audits</td>
