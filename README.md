@@ -25,14 +25,14 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
   </tr>
   <tr>
     <td valign="top">Docker Images</td>
-    <td>Docker 1.3 now supports cryptographic signature<sup> [3]</sup> to ascertain the origin and integrity of official repositories images. This feature is however still a work in progress as Docker will issue a warning but not prevent the image from actually running. Furthermore, it does not apply to non-official images.
+    <td><p align="justify">Docker 1.3 now supports cryptographic signature<sup> [3]</sup> to ascertain the origin and integrity of official repositories images. This feature is however still a work in progress as Docker will issue a warning but not prevent the image from actually running. Furthermore, it does not apply to non-official images.
     <br>
     <br>
     In general, ensure that images are only retrieved from trusted repositories and that the <code>--insecure-registry=[]</code> command line option is never used.</td> 
   </tr>
   <tr>
     <td valign="top">Network Namespaces<sup> [4]</sup></td>
-    <td>By default, the Docker REST API used to control containers exposed via the system Docker daemon is only accessible locally via a Unix domain socket.
+    <td><p align="justify">By default, the Docker REST API used to control containers exposed via the system Docker daemon is only accessible locally via a Unix domain socket.
     <br>
     <br>
     Running Docker on a TCP port (i.e. forcing the bind address using the -H option when launching the Docker daemon) will allow anyone with access to that port to gain access to the container, potentially gaining root access on the host as well in some scenarios where the local user belongs to the docker group<sup> [5]</sup>. 
@@ -49,7 +49,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
   </tr>
   <tr>
     <td valign="top">Logging & Auditing</td>
-    <td>Collect and archive security logs relating to Docker for auditing and monitoring purposes.
+    <td><p align="justify">Collect and archive security logs relating to Docker for auditing and monitoring purposes.
     <br>
     <br>
     Accessing log files outside of the container, from the host<sup> [8]</sup>, can be performed using the following command:<br>
@@ -66,7 +66,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
   </tr>
   <tr>
     <td valign="top">SELinux or AppArmor</td>
-    <td>Linux kernel security modules such as Security-Enhanced Linux (SELinux) and AppArmor can be configured, via access control security policies, to implement mandatory access controls (MAC) confining processes to a limited set of system resources or privileges.
+    <td><p align="justify">Linux kernel security modules such as Security-Enhanced Linux (SELinux) and AppArmor can be configured, via access control security policies, to implement mandatory access controls (MAC) confining processes to a limited set of system resources or privileges.
     <br>
     <br>  
     SELinux can be enabled in the container using setenforce 1, if it was previously installed and configured. The SELinux support for the Docker daemon is disabled by default and needs to be enabled using <code>--selinux-enabled</code>.
@@ -80,7 +80,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
   </tr>
   <tr>
     <td valign="top">Daemon Privileges</td>
-    <td>Do not use the <code>--privileged</code> command line option. This would otherwise allow the container to access all devices on the host and would in addition provide the container with specific a LSM (i.e SELinux or AppArmor) configuration that would give it the same level of access as processes running on the host.
+    <td><p align="justify">Do not use the <code>--privileged</code> command line option. This would otherwise allow the container to access all devices on the host and would in addition provide the container with specific a LSM (i.e SELinux or AppArmor) configuration that would give it the same level of access as processes running on the host.
     <br>
     <br>
     Avoid the use <code>--privileged</code> helps reduce the attack surface and potential of host compromise. This however does not mean that the daemon will run without root privileges which is still currently required in the latest release. 
@@ -97,7 +97,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
   </tr>
   <tr>
     <td valign="top">cgroups<sup> [10]</sup></td>
-    <td>In order to prevent Denial of Service (does) attacks via system resources exhaustion, a number of resources restrictions can be applied using specific command line arguments.
+    <td><p align="justify">In order to prevent Denial of Service (does) attacks via system resources exhaustion, a number of resources restrictions can be applied using specific command line arguments.
     <br>
     <br>
     CPU usage:<br>
@@ -117,7 +117,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
   </tr>
   <tr>
     <td valign="top">SUID/GUID binaries</td>
-    <td>SUID and GUID binaries can prove dangerous when vulnerable to attacks leading to arbitrary code execution (e.g. buffer overflows), as they will be running under the context of the process’s file owner or group. 
+    <td><p align="justify">SUID and GUID binaries can prove dangerous when vulnerable to attacks leading to arbitrary code execution (e.g. buffer overflows), as they will be running under the context of the process’s file owner or group. 
     <br>
     <br>
     When possible, consider removing SUID capabilities from the system and mount filesystem with the <code>nosuid</code> attribute.
@@ -134,7 +134,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
   </tr>
   <tr>
     <td valign="top">Devices control group (/dev/*)</td>
-    <td>If required, mount devices using the built-in <code>--device</code> option (do not use -v with the <code>--privileged</code> argument). This feature was introduced in  version 1.2<sup> [13]</sup>.
+    <td><p align="justify">If required, mount devices using the built-in <code>--device</code> option (do not use -v with the <code>--privileged</code> argument). This feature was introduced in  version 1.2<sup> [13]</sup>.
     <br>
     <br>
     <em>Example (for using sound card):</em><br>
@@ -142,14 +142,14 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
   </tr>
   <tr>
     <td valign="top">Services and Application</td>
-    <td>To reduce the potential for lateral movement if a Docker container was to be compromised, consider isolating sensitive services (e.g. run SSH service on bastion host or in a VM).
+    <td><p align="justify">To reduce the potential for lateral movement if a Docker container was to be compromised, consider isolating sensitive services (e.g. run SSH service on bastion host or in a VM).
     <br>
     <br>
     Furthermore, do not run untrusted applications with root privileges within containers.</td>
   </tr>
   <tr>
     <td valign="top">Mount Points</td>
-    <td>This is handled automatically by Docker when using the native container library (i.e. libcontainer). 
+    <td><p align="justify">This is handled automatically by Docker when using the native container library (i.e. libcontainer). 
     <br>
     <br>
     However, when using the LXC container library, sensitive mount points should ideally be manually mounted with read-only permissions, including:<br>
@@ -164,21 +164,21 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
   </tr>
   <tr>
     <td valign="top">Linux Kernel</td>
-    <td>Ensure kernel is up-to-date using update utility provided by the system (e.g. apt-get, yum, etc). Out-dated kernels are more likely to be vulnerable to publicly disclosed vulnerabilities.
+    <td><p align="justify">Ensure kernel is up-to-date using update utility provided by the system (e.g. apt-get, yum, etc). Out-dated kernels are more likely to be vulnerable to publicly disclosed vulnerabilities.
     <br>
     <br>
     Use strengthened a kernel with GRSEC or PAX, that for example provide increased security against memory corruption bugs.</td>
   </tr>
   <tr>
     <td valign="top">User Namespaces</td>
-    <td>Docker does not support user namespaces but is a feature currently under development<sup> [14]</sup>. UID mapping is currently supported by the LXC driver but not in the native libcontainer library.
+    <td><p align="justify">Docker does not support user namespaces but is a feature currently under development<sup> [14]</sup>. UID mapping is currently supported by the LXC driver but not in the native libcontainer library.
     <br>
     <br>    
     This feature would allow the Docker daemon to run as an unprivileged user on the host but appear as running as root within containers.</td>
   </tr>
   <tr>
     <td valign="top">libseccomp (and seccomp-bpf extension)</td>
-    <td>The libseccomp library allows to restrict the use of Linux kernel’s syscall procedures based on a white-list approach. Syscall procedures not vital to the system operation should ideally be disabled to prevent abuse or misuse within a compromised container.
+    <td><p align="justify">The libseccomp library allows to restrict the use of Linux kernel’s syscall procedures based on a white-list approach. Syscall procedures not vital to the system operation should ideally be disabled to prevent abuse or misuse within a compromised container.
     <br>
     <br>
     This feature is currently a work in progress (available in LXC driver, not in libcontainer which is now default).
@@ -193,7 +193,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
   </tr>
   <tr>
     <td valign="top"><code>capabilities(7)</code></td>
-    <td>Drop linux capabilities to a minimum whenever possible.
+    <td><p align="justify">Drop linux capabilities to a minimum whenever possible.
     Docker default capabilities include: <code>chown</code>, <code>dac_override</code>, <code>fowner</code>, <code>kill</code>, <code>setgid</code>, <code>setuid</code>, <code>setpcap</code>, <code>net_bind_service</code>, <code>net_raw</code>, <code>sys_chroot</code>, <code>mknod</code>, <code>setfcap</code>, and <code>audit_write</code>.
     <br>
     <br>
@@ -208,7 +208,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
   </tr>
   <tr>
     <td valign="top">Multi-tenancy Environments</td>
-    <td>Due to the shared nature of Docker containers’ kernel, separation of duty in the multi-tenancy environments cannot be achieved securely. It is recommended that containers be run on host that have no other purposes and are not used for sensitive operations. Consider moving all services into containers controlled by Docker.
+    <td><p align="justify">Due to the shared nature of Docker containers’ kernel, separation of duty in the multi-tenancy environments cannot be achieved securely. It is recommended that containers be run on host that have no other purposes and are not used for sensitive operations. Consider moving all services into containers controlled by Docker.
     <br>
     <br> 
     When possible, keep inter-container communications to a minimum by setting the Docker daemon to use <code>--icc=false</code> and specify -link with docker run when necessary, or <code>--export=port</code> to expose a port from the container without publishing it on the host.
@@ -218,14 +218,14 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
   </tr>
   <tr>
     <td valign="top">Full Virtualisation</td>
-    <td>Use a full virtualisation solution to contain Docker, such as KVM. This will prevent escalation from the container to the host if a kernel vulnerability is exploited inside the Docker image.
+    <td><p align="justify">Use a full virtualisation solution to contain Docker, such as KVM. This will prevent escalation from the container to the host if a kernel vulnerability is exploited inside the Docker image.
     <br>
     <br>
     Docker images can be nested to provide this KVM virtualisation layer as shown in the Docker-in-Docker utility<sup> [19]</sup>.</td>
   </tr>
   <tr>
     <td valign="top">Security Audits</td>
-    <td>Perform regular security audit of your host system and containers to identify mis-configuration or vulnerabilities that could expose your system to compromise.</td>
+    <td><p align="justify">Perform regular security audit of your host system and containers to identify mis-configuration or vulnerabilities that could expose your system to compromise.</td>
   </tr>
 </table>
 
