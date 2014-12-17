@@ -230,54 +230,52 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
 </table>
 
 <h2>References</h2>
-[1] Docker, Linux Containers (LXC), and security (August, 2014). Jérôme Petazzoni. [presentation slides]
+[1] <em>Docker, Linux Containers (LXC), and security</em> (August, 2014). Jérôme Petazzoni. [presentation slides]
 http://www.slideshare.net/jpetazzo/docker-linux-containers-lxc-and-security
-<br>[2] Docker and SELinux (July, 2014). Daniel Walsh [video]
+<br>[2] <em>Docker and SELinux</em> (July, 2014). Daniel Walsh [video]
 https://www.youtube.com/watch?v=zWGFqMuEHdw
-<br>[3] Docker 1.3: Signed Images, Process Injection, Security Options, Mac shared directories (October, 2014). Scott Johnston
+<br>[3] <em>Docker 1.3: Signed Images, Process Injection, Security Options, Mac shared directories</em> (October, 2014). Scott Johnston
 http://blog.docker.com/2014/10/docker-1-3-signed-images-process-injection-security-options-mac-shared-directories/
-<br>[4] Exploring LXC Networking (November, 2013). Milos Gajdos.
+<br>[4] <em>Exploring LXC Networking</em> (November, 2013). Milos Gajdos.
 http://containerops.org/2013/11/19/lxc-networking/
-<br>    PaaS under the hood, episode 1: kernel namespaces (November, 2012). Jérôme Petazzoni.
+<br>    <em>PaaS under the hood, episode 1: kernel namespaces</em> (November, 2012). Jérôme Petazzoni.
 http://blog.dotcloud.com/under-the-hood-linux-kernels-on-dotcloud-part
-<br>    Exploring networking in Linux containers (January, 2014). Milos Gajdos. [presentation slides]
+<br>    <em>Exploring networking in Linux containers</em> (January, 2014). Milos Gajdos. [presentation slides]
 https://speakerdeck.com/gyre007/exploring-networking-in-linux-containers
-<br>[5] How to grant rights to users to use Docker in Fedora (October 2014). Daniel Walsh
+<br>[5] <em>How to grant rights to users to use Docker in Fedora</em> (October 2014). Daniel Walsh
 http://opensource.com/business/14/10/docker-user-rights-fedora 
-<br>[6] Running Docker with https. [Docker documentation]
+<br>[6] <em>Running Docker with https.</em> [Docker documentation]
 https://docs.docker.com/articles/https/
-<br>[7] security suggestions when running malicious code, Google Groups (August, 2013). Jérôme Petazzoni 
+<br>[7] <em>security suggestions when running malicious code</em>, Google Groups (August, 2013). Jérôme Petazzoni 
 https://groups.google.com/forum/#!msg/docker-user/uuiQ3Nk3uSY/SuFpdO6BPmYJ
-<br>[8] Monitoring Images and Containers. [Red Hat documentation]
+<br>[8] <em>Monitoring Images and Containers.</em> [Red Hat documentation]
 https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Resource_Management_and_Linux_Containers_Guide/sec-Monitoring_Images.html
-<br>[9] Docker 1.3: Signed Images, Process Injection, Security Options, Mac shared directories (October, 2014). Scott Johnston
+<br>[9] <em>Docker 1.3: Signed Images, Process Injection, Security Options, Mac shared directories</em> (October, 2014). Scott Johnston
 http://blog.docker.com/2014/10/docker-1-3-signed-images-process-injection-security-options-mac-shared-directories/
-<br>[10] Resource management in Docker (September, 2014). Marek Goldmann.
+<br>[10] <em>Resource management in Docker</em> (September, 2014). Marek Goldmann.
 https://goldmann.pl/blog/2014/09/11/resource-management-in-docker/
-<br>    
-Gathering LXC and Docker Containers Metrics (October, 2013). Jérôme Petazzoni.
+<br>    <em>Gathering LXC and Docker Containers Metrics</em> (October, 2013). Jérôme Petazzoni.
 http://blog.docker.com/2013/10/gathering-lxc-docker-containers-metrics/
-<br>[11] Removing SUID and SGID flags off binaries (August, 2008). Eric Thern.
+<br>[11] <em>Removing SUID and SGID flags off binaries</em> (August, 2008). Eric Thern.
 http://www.thern.org/projects/linux-lecture/intro-to-linux/node10.html
-<br>[12] Announcing Docker 1.2.0 (August, 2014). Victor Vieux.
+<br>[12] <em>Announcing Docker 1.2.0</em> (August, 2014). Victor Vieux.
 http://blog.docker.com/2014/08/announcing-docker-1-2-0/
-<br>[13] Having non-root privileges on the host and root inside the container #2918 (November, 2013). [GitHub issue]
+<br>[13] <em>Having non-root privileges on the host and root inside the container #2918</em> (November, 2013). [GitHub issue]
 https://github.com/docker/docker/issues/2918
-<br>    Support for user namespaces #4572 (March 2014). [GitHub issue]
+<br>    <em>Support for user namespaces #4572</em> (March 2014). [GitHub issue]
 https://github.com/docker/docker/pull/4572
-<br>    Proposal: Support for user namespaces #7906 (September, 2014). [GitHub issue]
+<br>    <em>Proposal: Support for user namespaces #7906</em> (September, 2014). [GitHub issue]
 https://github.com/docker/docker/issues/7906
-<br>    Issue 8447: syscall, os/exec: Support for User Namespaces (July, 2014) [Google Code issue]
+<br>    <em>Issue 8447: syscall, os/exec: Support for User Namespaces</em> (July, 2014) [Google Code issue]
 https://code.google.com/p/go/issues/detail?id=8447
-<br>[14] Docker 0.9: Introducing Execution Drivers and libcontainer (March, 2014). Solomon Hykes
+<br>[14] <em>Docker 0.9: Introducing Execution Drivers and libcontainer</em> (March, 2014). Solomon Hykes
 http://blog.docker.com/2014/03/docker-0-9-introducing-execution-drivers-and-libcontainer/
 <br>[15] A simple helper script to help people build seccomp profiles for Docker/LXC (November 2013). Martijn van Oosterhout.
 https://github.com/docker/docker/blob/487a417d9fd074d0e78876072c7d1ebfd398ea7a/contrib/mkseccomp.pl
-<br>    A simple helper script to help people build seccomp profiles for Docker/LXC (November 2013). Martijn van Oosterhout.
-https://github.com/docker/docker/blob/487a417d9fd074d0e78876072c7d1ebfd398ea7a/contrib/mkseccomp.sample
-<br>[16] Announcing Docker 1.2.0 (August, 2014). Victor Vieux.
+<br>    https://github.com/docker/docker/blob/487a417d9fd074d0e78876072c7d1ebfd398ea7a/contrib/mkseccomp.sample
+<br>[16] <em>Announcing Docker 1.2.0</em> (August, 2014). Victor Vieux.
 http://blog.docker.com/2014/08/announcing-docker-1-2-0/
-<br>[17] Docker Container Breakout Proof-of-Concept Exploit (June, 2014). James Turnbull
+<br>[17] <em>Docker Container Breakout Proof-of-Concept Exploit</em> (June, 2014). James Turnbull
 http://blog.docker.com/2014/06/docker-container-breakout-proof-of-concept-exploit/
 <br>[18] docker2docker GitHub repository. Jérôme Petazzoni.
 https://github.com/jpetazzo/docker2docker
