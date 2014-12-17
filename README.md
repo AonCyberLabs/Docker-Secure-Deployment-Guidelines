@@ -113,7 +113,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     <br>
     <br>
     Disk I/O:<br>
-    Currently not supported by Docker. BlockIO* properties exposed via systemd can be leveraged to control disk usage quotas on supported operating systems<sup> [11]</sup>.</p></td>
+    Currently not supported by Docker. BlockIO* properties exposed via systemd can be leveraged to control disk usage quotas on supported operating systems.</p></td>
   </tr>
   <tr>
     <td valign="top">SUID/GUID binaries</td>
@@ -128,13 +128,13 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     <code>find / -perm -2000 -exec ls -l {} \; 2>/dev/null</code>
     <br>
     <br>
-    The SUID and GUID file permissions can then be removed using commands similar to the following<sup> [12]</sup>:<br>
+    The SUID and GUID file permissions can then be removed using commands similar to the following<sup> [11]</sup>:<br>
     <code>sudo chmod u-s filename</code>
     <code>sudo chmod -R g-s directory</code></p></td>
   </tr>
   <tr>
     <td valign="top">Devices control group (/dev/*)</td>
-    <td><p align="justify">If required, mount devices using the built-in <code>--device</code> option (do not use -v with the <code>--privileged</code> argument). This feature was introduced in  version 1.2<sup> [13]</sup>.
+    <td><p align="justify">If required, mount devices using the built-in <code>--device</code> option (do not use -v with the <code>--privileged</code> argument). This feature was introduced in  version 1.2<sup> [12]</sup>.
     <br>
     <br>
     <em>Example (for using sound card):</em><br>
@@ -171,7 +171,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
   </tr>
   <tr>
     <td valign="top">User Namespaces</td>
-    <td><p align="justify">Docker does not support user namespaces but is a feature currently under development<sup> [14]</sup>. UID mapping is currently supported by the LXC driver but not in the native libcontainer library.
+    <td><p align="justify">Docker does not support user namespaces but is a feature currently under development<sup> [13]</sup>. UID mapping is currently supported by the LXC driver but not in the native libcontainer library.
     <br>
     <br>    
     This feature would allow the Docker daemon to run as an unprivileged user on the host but appear as running as root within containers.</p></td>
@@ -184,11 +184,11 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     This feature is currently a work in progress (available in LXC driver, not in libcontainer which is now default).
     <br>
     <br>
-    To restart the Docker daemon to use the LXC driver use<sup> [15]</sup>:<br>
+    To restart the Docker daemon to use the LXC driver use<sup> [14]</sup>:<br>
     <code>docker -d -e lxc</code>
     <br>
     <br>
-    Instructions on how to generate a seccomp configuration on Docker GitHub repository within the 'contrib'<sup> [16]</sup> folder. This can later be used to create a LXC based Docker container using the following command:<br>
+    Instructions on how to generate a seccomp configuration on Docker GitHub repository within the 'contrib'<sup> [15]</sup> folder. This can later be used to create a LXC based Docker container using the following command:<br>
     <code>docker run --lxc-conf="lxc.seccomp=$file" &lt;rest of arguments&gt;</code></p></td>
   </tr>
   <tr>
@@ -204,7 +204,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     <code>docker run --cap-drop setuid --cap-drop setgid -ti rhel7 /bin/sh</code>
     <br>
     <br>
-    This feature was introduced in Docker version 1.2<sup> [17]</sup></p></td>
+    This feature was introduced in Docker version 1.2<sup> [16]</sup></p></td>
   </tr>
   <tr>
     <td valign="top">Multi-tenancy Environments</td>
@@ -214,14 +214,14 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     When possible, keep inter-container communications to a minimum by setting the Docker daemon to use <code>--icc=false</code> and specify -link with docker run when necessary, or <code>--export=port</code> to expose a port from the container without publishing it on the host.
     <br>
     <br>
-    Map groups of mutually-trusted containers to separate machines<sup> [18]</sup>.</p></td>
+    Map groups of mutually-trusted containers to separate machines<sup> [17]</sup>.</p></td>
   </tr>
   <tr>
     <td valign="top">Full Virtualisation</td>
     <td><p align="justify">Use a full virtualisation solution to contain Docker, such as KVM. This will prevent escalation from the container to the host if a kernel vulnerability is exploited inside the Docker image.
     <br>
     <br>
-    Docker images can be nested to provide this KVM virtualisation layer as shown in the Docker-in-Docker utility<sup> [19]</sup>.</p></td>
+    Docker images can be nested to provide this KVM virtualisation layer as shown in the Docker-in-Docker utility<sup> [18]</sup>.</p></td>
   </tr>
   <tr>
     <td valign="top">Security Audits</td>
@@ -230,32 +230,57 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
 </table>
 
 <h2>References</h2>
-[1] http://www.slideshare.net/jpetazzo/docker-linux-containers-lxc-and-security
-<br>[2] https://www.youtube.com/watch?v=zWGFqMuEHdw
-<br>[3] http://blog.docker.com/2014/10/docker-1-3-signed-images-process-injection-security-options-mac-shared-directories/
-<br>[4] http://containerops.org/2013/11/19/lxc-networking/
-<br>    http://blog.dotcloud.com/under-the-hood-linux-kernels-on-dotcloud-part
-<br>    https://speakerdeck.com/gyre007/exploring-networking-in-linux-containers
-<br>[5] http://opensource.com/business/14/10/docker-user-rights-fedora 
-<br>[6] https://docs.docker.com/articles/https/
-<br>[7] https://groups.google.com/forum/#!msg/docker-user/uuiQ3Nk3uSY/SuFpdO6BPmYJ
-<br>[8] https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Resource_Management_and_Linux_Containers_Guide/sec-Monitoring_Images.html
-<br>[9] http://blog.docker.com/2014/10/docker-1-3-signed-images-process-injection-security-options-mac-shared-directories/
-<br>[10] https://goldmann.pl/blog/2014/09/11/resource-management-in-docker/
-<br>    http://blog.docker.com/2013/10/gathering-lxc-docker-containers-metrics/
-<br>[11] https://goldmann.pl/blog/2014/09/11/resource-management-in-docker/#_limiting_read_write_speed
-<br>[12] http://www.thern.org/projects/linux-lecture/intro-to-linux/node10.html
-<br>[13] http://blog.docker.com/2014/08/announcing-docker-1-2-0/
-<br>[14] https://github.com/docker/docker/issues/2918
-<br>    https://github.com/docker/docker/pull/4572
-<br>    https://github.com/docker/docker/issues/7906
-<br>    https://code.google.com/p/go/issues/detail?id=8447
-<br>[15] http://blog.docker.com/2014/03/docker-0-9-introducing-execution-drivers-and-libcontainer/
-<br>[16] https://github.com/docker/docker/blob/487a417d9fd074d0e78876072c7d1ebfd398ea7a/contrib/mkseccomp.pl
-<br>    https://github.com/docker/docker/blob/487a417d9fd074d0e78876072c7d1ebfd398ea7a/contrib/mkseccomp.sample
-<br>[17] http://blog.docker.com/2014/08/announcing-docker-1-2-0/
-<br>[18] http://blog.docker.com/2014/06/docker-container-breakout-proof-of-concept-exploit/
-<br>[19] https://github.com/jpetazzo/docker2docker
+[1] Docker, Linux Containers (LXC), and security (August, 2014). Jérôme Petazzoni. [presentation slides]
+http://www.slideshare.net/jpetazzo/docker-linux-containers-lxc-and-security
+<br>[2] Docker and SELinux (July, 2014). Daniel Walsh [video]
+https://www.youtube.com/watch?v=zWGFqMuEHdw
+<br>[3] Docker 1.3: Signed Images, Process Injection, Security Options, Mac shared directories (October, 2014). Scott Johnston
+http://blog.docker.com/2014/10/docker-1-3-signed-images-process-injection-security-options-mac-shared-directories/
+<br>[4] Exploring LXC Networking (November, 2013). Milos Gajdos.
+http://containerops.org/2013/11/19/lxc-networking/
+<br>    PaaS under the hood, episode 1: kernel namespaces (November, 2012). Jérôme Petazzoni.
+http://blog.dotcloud.com/under-the-hood-linux-kernels-on-dotcloud-part
+<br>    Exploring networking in Linux containers (January, 2014). Milos Gajdos. [presentation slides]
+https://speakerdeck.com/gyre007/exploring-networking-in-linux-containers
+<br>[5] How to grant rights to users to use Docker in Fedora (October 2014). Daniel Walsh
+http://opensource.com/business/14/10/docker-user-rights-fedora 
+<br>[6] Running Docker with https. [Docker documentation]
+https://docs.docker.com/articles/https/
+<br>[7] security suggestions when running malicious code, Google Groups (August, 2013). Jérôme Petazzoni 
+https://groups.google.com/forum/#!msg/docker-user/uuiQ3Nk3uSY/SuFpdO6BPmYJ
+<br>[8] Monitoring Images and Containers. [Red Hat documentation]
+https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Resource_Management_and_Linux_Containers_Guide/sec-Monitoring_Images.html
+<br>[9] Docker 1.3: Signed Images, Process Injection, Security Options, Mac shared directories (October, 2014). Scott Johnston
+http://blog.docker.com/2014/10/docker-1-3-signed-images-process-injection-security-options-mac-shared-directories/
+<br>[10] Resource management in Docker (September, 2014). Marek Goldmann.
+https://goldmann.pl/blog/2014/09/11/resource-management-in-docker/
+<br>    
+Gathering LXC and Docker Containers Metrics (October, 2013). Jérôme Petazzoni.
+http://blog.docker.com/2013/10/gathering-lxc-docker-containers-metrics/
+<br>[11] Removing SUID and SGID flags off binaries (August, 2008). Eric Thern.
+http://www.thern.org/projects/linux-lecture/intro-to-linux/node10.html
+<br>[12] Announcing Docker 1.2.0 (August, 2014). Victor Vieux.
+http://blog.docker.com/2014/08/announcing-docker-1-2-0/
+<br>[13] Having non-root privileges on the host and root inside the container #2918 (November, 2013). [GitHub issue]
+https://github.com/docker/docker/issues/2918
+<br>    Support for user namespaces #4572 (March 2014). [GitHub issue]
+https://github.com/docker/docker/pull/4572
+<br>    Proposal: Support for user namespaces #7906 (September, 2014). [GitHub issue]
+https://github.com/docker/docker/issues/7906
+<br>    Issue 8447: syscall, os/exec: Support for User Namespaces (July, 2014) [Google Code issue]
+https://code.google.com/p/go/issues/detail?id=8447
+<br>[14] Docker 0.9: Introducing Execution Drivers and libcontainer (March, 2014). Solomon Hykes
+http://blog.docker.com/2014/03/docker-0-9-introducing-execution-drivers-and-libcontainer/
+<br>[15] A simple helper script to help people build seccomp profiles for Docker/LXC (November 2013). Martijn van Oosterhout.
+https://github.com/docker/docker/blob/487a417d9fd074d0e78876072c7d1ebfd398ea7a/contrib/mkseccomp.pl
+<br>    A simple helper script to help people build seccomp profiles for Docker/LXC (November 2013). Martijn van Oosterhout.
+https://github.com/docker/docker/blob/487a417d9fd074d0e78876072c7d1ebfd398ea7a/contrib/mkseccomp.sample
+<br>[16] Announcing Docker 1.2.0 (August, 2014). Victor Vieux.
+http://blog.docker.com/2014/08/announcing-docker-1-2-0/
+<br>[17] Docker Container Breakout Proof-of-Concept Exploit (June, 2014). James Turnbull
+http://blog.docker.com/2014/06/docker-container-breakout-proof-of-concept-exploit/
+<br>[18] docker2docker GitHub repository. Jérôme Petazzoni.
+https://github.com/jpetazzo/docker2docker
 <br>
 <h2>License</h2>
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Docker Secure Deployment Guidelines</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/GDSSecurity/MAM-Security-Checklist" property="cc:attributionName" rel="cc:attributionURL">Gotham Digital Science</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
