@@ -7,11 +7,11 @@
 <body>
 
 <p align="justify">
-Within today’s growing cloud-based IT market, there is a strong demand for virtualization technologies. Unfortunately most virtualization solutions are not flexible enough to meet developer requirements and the overhead implied by the use of full virtualisation solutions becomes a burden on the scalability of the infrastructure. 
+Within today’s growing cloud-based IT market, there is a strong demand for virtualisation technologies. Unfortunately most virtualisation solutions are not flexible enough to meet developer requirements and the overhead implied by the use of full virtualisation solutions becomes a burden on the scalability of the infrastructure. 
 <br><br>
-Docker reduces that overhead by allowing developers and system administrator to seamlessly deploy containers for applications and services required for the business operation. However, because Docker leverages the same kernel as the host system to reduce the need for resources, containers can be exposed to a great security risk if not adequately configured.
+Docker reduces that overhead by allowing developers and system administrators to seamlessly deploy containers for applications and services required for business operations. However, because Docker leverages the same kernel as the host system to reduce the need for resources, containers can be exposed to significant security risks if not adequately configured.
 <br><br>
-The following itemised list suggests hardening actions that can be undertaken to improve the security posture of the containers within their respective environment. It should be noted that proposed solutions only apply to deployment of Linux Docker containers on Linux-based hosts, using Docker most recent release at the time of this writing (1.4.0, commit <code>4595d4f</code>, dating 11/12/14).
+The following itemised list suggests hardening actions that can be undertaken to improve the security posture of the containers within their respective environment. It should be noted that proposed solutions only apply to deployment of Linux Docker containers on Linux-based hosts, using the most recent release of Docker at the time of this writing (1.4.0, commit <code>4595d4f</code>, dating 11/12/14).
 <br><br>
 Part of the content below is based on publications from Jérôme Petazzoni<sup> [1]</sup> and Daniel J Walsh<sup> [2]</sup>. This document aims at adding on to their recommendations and how they can specifically be implemented within Docker.
 <br><br>
@@ -25,7 +25,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
   </tr>
   <tr>
     <td valign="top">Docker Images</td>
-    <td><p align="justify">Docker 1.3 now supports cryptographic signature<sup> [3]</sup> to ascertain the origin and integrity of official repositories images. This feature is however still a work in progress as Docker will issue a warning but not prevent the image from actually running. Furthermore, it does not apply to non-official images.
+    <td><p align="justify">Docker 1.3 now supports cryptographic signatures<sup> [3]</sup> to ascertain the origin and integrity of official repository images. This feature is however still a work in progress as Docker will issue a warning but not prevent the image from actually running. Furthermore, it does not apply to non-official images.
     <br>
     <br>
     In general, ensure that images are only retrieved from trusted repositories and that the <code>--insecure-registry=[]</code> command line option is never used.</td> 
@@ -53,7 +53,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     <br>
     <br>
     Accessing log files outside of the container, from the host<sup> [8]</sup>, can be performed using the following command:<br>
-    <code>docker run -v /dev/log:/dev/log rhel7 /bin/sh</code>
+    <code>docker run -v /dev/log:/dev/log <container_name> /bin/sh</code>
     <br>
     <br>
     Using the Docker command built-in:<br>
@@ -76,14 +76,14 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     <br>
     <br>
     <em>Example:</em><br>
-    <code>docker run --security-opt=secdriver:name:value -i -t centos \ bash</code></p></td>
+    <code>docker run --security-opt=secdriver:name:value -i -t centos bash</code></p></td>
   </tr>
   <tr>
     <td valign="top">Daemon Privileges</td>
     <td><p align="justify">Do not use the <code>--privileged</code> command line option. This would otherwise allow the container to access all devices on the host and would in addition provide the container with specific a LSM (i.e SELinux or AppArmor) configuration that would give it the same level of access as processes running on the host.
     <br>
     <br>
-    Avoid the use <code>--privileged</code> helps reduce the attack surface and potential of host compromise. This however does not mean that the daemon will run without root privileges which is still currently required in the latest release. 
+    Avoiding the use of <code>--privileged</code> helps reduce the attack surface and potential of host compromise. This however does not mean that the daemon will run without root privileges which is still currently required in the latest release. 
     <br>
     <br>
     The ability to launch the daemon and containers should only be given to trusted user.
@@ -91,13 +91,13 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     <br>
     Minimize privileges enforced inside the container by leveraging the -u option.<br>
     <em>Example:</em><br>
-    <code>docker run -u <username> -it ubuntu /bin/bash</code> 
+    <code>docker run -u <username> -it <container_name> /bin/bash</code> 
     <br><br>
     Any user part of the docker group could eventually get root on the host from the container</p></td>
   </tr>
   <tr>
     <td valign="top">cgroups<sup> [10]</sup></td>
-    <td><p align="justify">In order to prevent Denial of Service (does) attacks via system resources exhaustion, a number of resources restrictions can be applied using specific command line arguments.
+    <td><p align="justify">In order to prevent Denial of Service (DoS) attacks via system resource exhaustion, a number of resource restrictions can be applied using specific command line arguments.
     <br>
     <br>
     CPU usage:<br>
@@ -123,7 +123,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     When possible, consider removing SUID capabilities from the system and mount filesystem with the <code>nosuid</code> attribute.
     <br>
     <br>    
-    Find SUID/GUID binaries can be found on a Linux  on the system by running the following commands:<br>
+    SUID/GUID binaries can be found on a Linux system by running the following commands:<br>
     <code>find / -perm -4000 -exec ls -l {} \; 2>/dev/null</code><br>
     <code>find / -perm -2000 -exec ls -l {} \; 2>/dev/null</code>
     <br>
@@ -141,7 +141,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     <code>docker run --device=/dev/snd:/dev/snd ...</code></p></td>
   </tr>
   <tr>
-    <td valign="top">Services and Application</td>
+    <td valign="top">Services and Applications</td>
     <td><p align="justify">To reduce the potential for lateral movement if a Docker container was to be compromised, consider isolating sensitive services (e.g. run SSH service on bastion host or in a VM).
     <br>
     <br>
@@ -178,7 +178,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
   </tr>
   <tr>
     <td valign="top">libseccomp (and seccomp-bpf extension)</td>
-    <td><p align="justify">The libseccomp library allows to restrict the use of Linux kernel’s syscall procedures based on a white-list approach. Syscall procedures not vital to the system operation should ideally be disabled to prevent abuse or misuse within a compromised container.
+    <td><p align="justify">The libseccomp library allows restricting the use of Linux kernel’s syscall procedures based on a white-list approach. Syscall procedures not vital to system operation should ideally be disabled to prevent abuse or misuse within a compromised container.
     <br>
     <br>
     This feature is currently a work in progress (available in LXC driver, not in libcontainer which is now default).
@@ -188,7 +188,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     <code>docker -d -e lxc</code>
     <br>
     <br>
-    Instructions on how to generate a seccomp configuration on Docker GitHub repository within the 'contrib'<sup> [15]</sup> folder. This can later be used to create a LXC based Docker container using the following command:<br>
+    Instructions on how to generate a seccomp configuration are on the Docker GitHub repository within the 'contrib'<sup> [15]</sup> folder. This can later be used to create a LXC based Docker container using the following command:<br>
     <code>docker run --lxc-conf="lxc.seccomp=$file" &lt;rest of arguments&gt;</code></p></td>
   </tr>
   <tr>
@@ -201,14 +201,14 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     <br>
     <br>
     <em>Example:</em><br>
-    <code>docker run --cap-drop setuid --cap-drop setgid -ti rhel7 /bin/sh</code>
+    <code>docker run --cap-drop setuid --cap-drop setgid -ti <container_name> /bin/sh</code>
     <br>
     <br>
     This feature was introduced in Docker version 1.2<sup> [16]</sup></p></td>
   </tr>
   <tr>
     <td valign="top">Multi-tenancy Environments</td>
-    <td><p align="justify">Due to the shared nature of Docker containers’ kernel, separation of duty in the multi-tenancy environments cannot be achieved securely. It is recommended that containers be run on host that have no other purposes and are not used for sensitive operations. Consider moving all services into containers controlled by Docker.
+    <td><p align="justify">Due to the shared nature of Docker containers’ kernel, separation of duty in multi-tenancy environments cannot be achieved securely. It is recommended that containers be run on hosts that have no other purposes and are not used for sensitive operations. Consider moving all services into containers controlled by Docker.
     <br>
     <br> 
     When possible, keep inter-container communications to a minimum by setting the Docker daemon to use <code>--icc=false</code> and specify -link with docker run when necessary, or <code>--export=port</code> to expose a port from the container without publishing it on the host.
@@ -225,7 +225,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
   </tr>
   <tr>
     <td valign="top">Security Audits</td>
-    <td><p align="justify">Perform regular security audit of your host system and containers to identify mis-configuration or vulnerabilities that could expose your system to compromise.</p></td>
+    <td><p align="justify">Perform regular security audits of your host system and containers to identify mis-configuration or vulnerabilities that could expose your system to compromise.</p></td>
   </tr>
 </table>
 
