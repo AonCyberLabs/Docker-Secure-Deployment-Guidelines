@@ -53,7 +53,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     <br>
     <br>
     Accessing log files outside of the container, from the host<sup> [8]</sup>, can be performed using the following command:<br>
-    <code>docker run -v /dev/log:/dev/log <container_name> /bin/sh</code>
+    <code>docker run -v /dev/log:/dev/log &lt;container_name&gt; /bin/sh</code>
     <br>
     <br>
     Using the Docker command built-in:<br>
@@ -91,7 +91,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     <br>
     Minimize privileges enforced inside the container by leveraging the -u option.<br>
     <em>Example:</em><br>
-    <code>docker run -u <username> -it <container_name> /bin/bash</code> 
+    <code>docker run -u &lt;username&gt; -it &lt;container_name&gt; /bin/bash</code> 
     <br><br>
     Any user part of the docker group could eventually get root on the host from the container</p></td>
   </tr>
@@ -201,7 +201,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     <br>
     <br>
     <em>Example:</em><br>
-    <code>docker run --cap-drop setuid --cap-drop setgid -ti <container_name> /bin/sh</code>
+    <code>docker run --cap-drop setuid --cap-drop setgid -ti &lt;container_name&gt; /bin/sh</code>
     <br>
     <br>
     This feature was introduced in Docker version 1.2<sup> [16]</sup></p></td>
