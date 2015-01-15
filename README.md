@@ -119,6 +119,9 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     <td valign="top">SUID/GUID binaries</td>
     <td><p align="justify">SUID and GUID binaries can prove dangerous when vulnerable to attacks leading to arbitrary code execution (e.g. buffer overflows), as they will be running under the context of the process’s file owner or group. 
     <br>
+    When possible, prohibit SUID and SGID from taking effect by reducing the capabilities given to containers using specific command line arguments.<br>
+    <code>docker run -it --rm --cap-drop SETUID --cap-drop SETGID ...</code>
+    <br>
     <br>
     When possible, consider removing SUID capabilities from the system and mount filesystem with the <code>nosuid</code> attribute.
     <br>
