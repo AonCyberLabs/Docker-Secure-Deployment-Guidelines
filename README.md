@@ -127,7 +127,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     Alternatively, consider removing SUID capabilities from the system by mounting filesystem with the <code>nosuid</code> attribute.
     <br>
     <br>    
-    One last option could be to remove unwanted SUID and GUID binaries from the system altogether. This type of binaries can be found on a Linux system by running the following commands:<br>
+    One last option could be to remove unwanted SUID and GUID binaries from the system altogether. These types of binaries can be found on a Linux system by running the following commands:<br>
     <code>find / -perm -4000 -exec ls -l {} \; 2>/dev/null</code><br>
     <code>find / -perm -2000 -exec ls -l {} \; 2>/dev/null</code>
     <br>
