@@ -72,14 +72,14 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     SELinux can be enabled in the container using setenforce 1, if it was previously installed and configured. The SELinux support for the Docker daemon is disabled by default and needs to be enabled using <code>--selinux-enabled</code>.
     <br>
     <br>
-    Introduced in Docker version 1.3<sup> [9]</sup>, label confinement for the container can be configured using the newly added <code>--security-opt</code>argument to load SELinux or AppArmor policies, as shown in the Docker <code>run</code> reference excerpt below.
-    <br> 
-    <code>--security-opt="label:user:USER"</code>   : Set the label user for the container<br>
-    <code>--security-opt="label:role:ROLE"</code>   : Set the label role for the container<br>
-    <code>--security-opt="label:type:TYPE"</code>   : Set the label type for the container<br>
-    <code>--security-opt="label:level:LEVEL"</code> : Set the label level for the container<br>
-    or<br>
-    <code>--secutity-opt="apparmor:PROFILE"</code>  : Set the apparmor profile to be applied to the container</code>
+    Introduced in Docker version 1.3<sup> [9]</sup>, label confinement for the container can be configured using the newly added <code>--security-opt</code> argument to load SELinux or AppArmor policies, as shown in the Docker <code>run</code> reference excerpt below.
+    <br>
+    <br>
+    <code>--security-opt="label:user:USER"   : Set the label user for the container<br>
+    --security-opt="label:role:ROLE"   : Set the label role for the container<br>
+    --security-opt="label:type:TYPE"   : Set the label type for the container<br>
+    --security-opt="label:level:LEVEL" : Set the label level for the container<br>
+    --security-opt="apparmor:PROFILE"  : Set the apparmor profile to be applied to the container</code>
     <br>
     <br>
     <em>Example:</em><br>
