@@ -75,11 +75,11 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     Introduced in Docker version 1.3<sup> [9]</sup>, label confinement for the container can be configured using the newly added <code>--security-opt</code> argument to load SELinux or AppArmor policies, as shown in the Docker <code>run</code> reference excerpt below.
     <br>
     <br>
-    <code>--security-opt="label:user:USER"   : Set the label user for the container<br>
-    --security-opt="label:role:ROLE"   : Set the label role for the container<br>
-    --security-opt="label:type:TYPE"   : Set the label type for the container<br>
-    --security-opt="label:level:LEVEL" : Set the label level for the container<br>
-    --security-opt="apparmor:PROFILE"  : Set the apparmor profile to be applied to the container</code>
+    <code>--security-opt="label:user:USER"</code>   : Set the label user for the container<br>
+    <code>--security-opt="label:role:ROLE"</code>   : Set the label role for the container<br>
+    <code>--security-opt="label:type:TYPE"</code>   : Set the label type for the container<br>
+    <code>--security-opt="label:level:LEVEL"</code> : Set the label level for the container<br>
+    <code>--security-opt="apparmor:PROFILE"</code>  : Set the apparmor profile to be applied to the container
     <br>
     <br>
     <em>Example:</em><br>
@@ -145,11 +145,17 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
   </tr>
   <tr>
     <td valign="top">Devices control group (/dev/*)</td>
-    <td><p align="justify">If required, mount devices using the built-in <code>--device</code> option (do not use -v with the <code>--privileged</code> argument). This feature was introduced in  version 1.2<sup> [12]</sup>.
+    <td><p align="justify">If required, mount devices using the built-in <code>--device</code> option (do not use -v with the <code>--privileged</code> argument). 
     <br>
     <br>
-    <em>Example (for using sound card):</em><br>
-    <code>docker run --device=/dev/snd:/dev/snd ...</code></p></td>
+    Granular permissions can be assigned to each device using a third set of options <code>:rwm</code> to override <code>read</code>, <code>write</code>, and <code>mknod</code> permissions respectively (default includes all permissions).
+    <br>
+    <br>
+    <em>Example (for using sound card with read-only permission):</em><br>
+    <code>docker run --device=/dev/snd:/dev/snd:r  ...</code>
+    <br>
+    <br>
+    This feature was introduced in  version 1.2<sup> [12]</sup>.</p></td> 
   </tr>
   <tr>
     <td valign="top">Services and Applications</td>
@@ -164,13 +170,13 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     <br>
     <br>
     However, when using the LXC container library, sensitive mount points should ideally be manually mounted with read-only permissions, including:<br>
-    <code>/sys</code><br> 
-    <code>/proc/sys</code><br>
-    <code>/proc/sysrq-trigger</code><br> 
-    <code>/proc/irq</code><br>
-    <code>/proc/bus</code>
-    <br>
-    <br>
+    <ul>
+        <li><code>/sys</code><br></li> 
+        <li><code>/proc/sys</code><br></li>
+        <li><code>/proc/sysrq-trigger</code><br></li> 
+        <li><code>/proc/irq</code><br></li>
+        <li><code>/proc/bus</code></li>
+    </ul>
     Mount permissions should later be removed to prevent remounting.</p></td>
   </tr>
   <tr>
@@ -185,7 +191,14 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     <td><p align="justify">Docker does not support user namespaces but is a feature currently under development<sup> [13]</sup>. UID mapping is currently supported by the LXC driver but not in the native libcontainer library.
     <br>
     <br>    
-    This feature would allow the Docker daemon to run as an unprivileged user on the host but appear as running as root within containers.</p></td>
+    This feature would allow the Docker daemon to run as an unprivileged user on the host but appear as running as root within containers. While suing the LXC driver this can by using the <code>-lxc-conf</code> option, as shown in the example Docker <code>run</code> command below.</p>
+    <code>docker run -lxc-conf="lxc.id_map = u 0 100000 65536" -lxc-conf="lxc.id_map = g 0 100000 65536" ...</code>
+    <br>
+    <br>
+    <p align="justify">The specified arguments in the above command will instruct Docker to map UIDs and GIDs 100000 through 65536 on the host to UIDs and GIDs 0 through 65536 to a specific user account, defined at system level on the host in a configuration similar to:<sup> [14]</sup></p>
+    <code>/etc/subgid:<em>&lt;username&gt;</em>:100000:65536</code><br>
+    <code>/etc/subuid:<em>&lt;username&gt;</em>:100000:65536</code> 
+    </td>
   </tr>
   <tr>
     <td valign="top">libseccomp (and seccomp-bpf extension)</td>
@@ -195,11 +208,11 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     This feature is currently a work in progress (available in LXC driver, not in libcontainer which is now default).
     <br>
     <br>
-    To restart the Docker daemon to use the LXC driver use<sup> [14]</sup>:<br>
+    To restart the Docker daemon to use the LXC driver use<sup> [15]</sup>:<br>
     <code>docker -d -e lxc</code>
     <br>
     <br>
-    Instructions on how to generate a seccomp configuration are on the Docker GitHub repository within the 'contrib'<sup> [15]</sup> folder. This can later be used to create a LXC based Docker container using the following command:<br>
+    Instructions on how to generate a seccomp configuration are on the Docker GitHub repository within the 'contrib'<sup> [16]</sup> folder. This can later be used to create a LXC based Docker container using the following command:<br>
     <code>docker run --lxc-conf="lxc.seccomp=$file" &lt;rest of arguments&gt;</code></p></td>
   </tr>
   <tr>
@@ -215,7 +228,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     <code>docker run --cap-drop setuid --cap-drop setgid -ti &lt;container_name&gt; /bin/sh</code>
     <br>
     <br>
-    This feature was introduced in Docker version 1.2<sup> [16]</sup></p></td>
+    This feature was introduced in Docker version 1.2<sup> [17]</sup></p></td>
   </tr>
   <tr>
     <td valign="top">Multi-tenancy Environments</td>
@@ -225,14 +238,14 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     When possible, keep inter-container communications to a minimum by setting the Docker daemon to use <code>--icc=false</code> and specify -link with docker run when necessary, or <code>--export=port</code> to expose a port from the container without publishing it on the host.
     <br>
     <br>
-    Map groups of mutually-trusted containers to separate machines<sup> [17]</sup>.</p></td>
+    Map groups of mutually-trusted containers to separate machines<sup> [18]</sup>.</p></td>
   </tr>
   <tr>
     <td valign="top">Full Virtualisation</td>
     <td><p align="justify">Use a full virtualisation solution to contain Docker, such as KVM. This will prevent escalation from the container to the host if a kernel vulnerability is exploited inside the Docker image.
     <br>
     <br>
-    Docker images can be nested to provide this KVM virtualisation layer as shown in the Docker-in-Docker utility<sup> [18]</sup>.</p></td>
+    Docker images can be nested to provide this KVM virtualisation layer as shown in the Docker-in-Docker utility<sup> [19]</sup>.</p></td>
   </tr>
   <tr>
     <td valign="top">Security Audits</td>
@@ -279,16 +292,18 @@ https://github.com/docker/docker/pull/4572
 https://github.com/docker/docker/issues/7906
 <br>    <em>Issue 8447: syscall, os/exec: Support for User Namespaces</em> (July, 2014) [Google Code issue]
 https://code.google.com/p/go/issues/detail?id=8447
-<br>[14] <em>Docker 0.9: Introducing Execution Drivers and libcontainer</em> (March, 2014). Solomon Hykes
+<br>[14] <em>Introduction to unprivileged containers</em> (January, 2014). Stéphane Graber
+https://www.stgraber.org/2014/01/17/lxc-1-0-unprivileged-containers/
+<br>[15] <em>Docker 0.9: Introducing Execution Drivers and libcontainer</em> (March, 2014). Solomon Hykes
 http://blog.docker.com/2014/03/docker-0-9-introducing-execution-drivers-and-libcontainer/
-<br>[15] A simple helper script to help people build seccomp profiles for Docker/LXC (November 2013). Martijn van Oosterhout.
+<br>[16] A simple helper script to help people build seccomp profiles for Docker/LXC (November 2013). Martijn van Oosterhout.
 https://github.com/docker/docker/blob/487a417d9fd074d0e78876072c7d1ebfd398ea7a/contrib/mkseccomp.pl
 <br>    https://github.com/docker/docker/blob/487a417d9fd074d0e78876072c7d1ebfd398ea7a/contrib/mkseccomp.sample
-<br>[16] <em>Announcing Docker 1.2.0</em> (August, 2014). Victor Vieux.
+<br>[17] <em>Announcing Docker 1.2.0</em> (August, 2014). Victor Vieux.
 http://blog.docker.com/2014/08/announcing-docker-1-2-0/
-<br>[17] <em>Docker Container Breakout Proof-of-Concept Exploit</em> (June, 2014). James Turnbull
+<br>[18] <em>Docker Container Breakout Proof-of-Concept Exploit</em> (June, 2014). James Turnbull
 http://blog.docker.com/2014/06/docker-container-breakout-proof-of-concept-exploit/
-<br>[18] docker2docker GitHub repository. Jérôme Petazzoni.
+<br>[19] docker2docker GitHub repository. Jérôme Petazzoni.
 https://github.com/jpetazzo/docker2docker
 <br>
 <h2>License</h2>
