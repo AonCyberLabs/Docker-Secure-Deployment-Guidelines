@@ -191,7 +191,7 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     <td><p align="justify">Docker does not support user namespaces but is a feature currently under development<sup> [13]</sup>. UID mapping is currently supported by the LXC driver but not in the native libcontainer library.
     <br>
     <br>    
-    This feature would allow the Docker daemon to run as an unprivileged user on the host but appear as running as root within containers. While suing the LXC driver this can by using the <code>-lxc-conf</code> option, as shown in the example Docker <code>run</code> command below.</p>
+    This feature would allow the Docker daemon to run as an unprivileged user on the host but appear as running as root within containers. While using the LXC driver this can by using the <code>-lxc-conf</code> option, as shown in the example Docker <code>run</code> command below.</p>
     <code>docker run -lxc-conf="lxc.id_map = u 0 100000 65536" -lxc-conf="lxc.id_map = g 0 100000 65536" ...</code>
     <br>
     <br>
