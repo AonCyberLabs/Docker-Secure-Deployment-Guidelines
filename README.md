@@ -7,7 +7,7 @@
 <body>
 
 <p align="justify">
-Within today’s growing cloud-based IT market, there is a strong demand for virtualisation technologies. Unfortunately most virtualisation solutions are not flexible enough to meet developer requirements and the overhead implied by the use of full virtualisation solutions becomes a burden on the scalability of the infrastructure. 
+Within today’s growing cloud-based IT market, there is a strong demand for virtualization technologies. Unfortunately most virtualization solutions are not flexible enough to meet developer requirements and the overhead implied by the use of full virtualization solutions becomes a burden on the scalability of the infrastructure. 
 <br><br>
 Docker reduces that overhead by allowing developers and system administrators to seamlessly deploy containers for applications and services required for business operations. However, because Docker leverages the same kernel as the host system to reduce the need for resources, containers can be exposed to significant security risks if not adequately configured.
 <br><br>
@@ -241,11 +241,11 @@ Part of the content below is based on publications from Jérôme Petazzoni<sup> 
     Map groups of mutually-trusted containers to separate machines<sup> [18]</sup>.</p></td>
   </tr>
   <tr>
-    <td valign="top">Full Virtualisation</td>
-    <td><p align="justify">Use a full virtualisation solution to contain Docker, such as KVM. This will prevent escalation from the container to the host if a kernel vulnerability is exploited inside the Docker image.
+    <td valign="top">Full virtualization</td>
+    <td><p align="justify">Use a full virtualization solution to contain Docker, such as KVM. This will prevent escalation from the container to the host if a kernel vulnerability is exploited inside the Docker image.
     <br>
     <br>
-    Docker images can be nested to provide this KVM virtualisation layer as shown in the Docker-in-Docker utility<sup> [19]</sup>.</p></td>
+    Docker images can be nested to provide this KVM virtualization layer as shown in the Docker-in-Docker utility<sup> [19]</sup>.</p></td>
   </tr>
   <tr>
     <td valign="top">Security Audits</td>
