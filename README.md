@@ -7,7 +7,7 @@
 <body>
 
 <p align="justify">
-Within today’s growing cloud-based IT market, there is a strong demand for virtualisation technologies. Unfortunately most virtualisation solutions are not flexible enough to meet developer requirements and the overhead implied by the use of full virtualisation solutions becomes a burden on the scalability of the infrastructure. 
+Within today’s growing cloud-based IT market, there is a strong demand for virtualization technologies. Unfortunately most virtualization solutions are not flexible enough to meet developer requirements and the overhead implied by the use of full virtualization solutions becomes a burden on the scalability of the infrastructure. 
 <br><br>
 Docker reduces that overhead by allowing developers and system administrators to seamlessly deploy containers for applications and services required for business operations. However, because Docker leverages the same kernel as the host system to reduce the need for resources, containers can be exposed to significant security risks if not adequately configured.
 <br><br>
